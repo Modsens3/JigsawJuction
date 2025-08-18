@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FileReader Test</title>
+</head>
+<body>
+    <h1>FileReader Test</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="testFileReader()">Test FileReader</button>
+    <div id="result"></div>
+
+    <script>
+        async function testFileReader() {
+            const fileInput = document.getElementById('fileInput');
+            const resultDiv = document.getElementById('result');
+            
+            if (!fileInput.files || !fileInput.files[0]) {
+                resultDiv.innerHTML = 'No file selected';
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            console.log('File selected:', file.name, file.size, 'bytes');
+            
+            try {
+                // Create blob URL
+                const blobUrl = URL.createObjectURL(file);
+                console.log('Blob URL created:', blobUrl);
+                
+                // Test FileReader with original file
+                const dataUrl1 = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const result = e.target.result;
+                        console.log('FileReader result size:', result.length, 'characters');
+                        resolve(result);
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+                
+                console.log('Data URL 1 (from file):', dataUrl1.substring(0, 100));
+                
+                // Test FileReader with blob URL fetch
+                const response = await fetch(blobUrl);
+                const blob = await response.blob();
+                console.log('Blob from fetch:', blob.size, 'bytes, type:', blob.type);
+                
+                const dataUrl2 = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const result = e.target.result;
+                        console.log('FileReader result size (from blob):', result.length, 'characters');
+                        resolve(result);
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+                
+                console.log('Data URL 2 (from blob):', dataUrl2.substring(0, 100));
+                
+                // Compare results
+                const isSame = dataUrl1 === dataUrl2;
+                console.log('Results are same:', isSame);
+                
+                resultDiv.innerHTML = `
+                    <h3>Test Results:</h3>
+                    <p>File: ${file.name} (${file.size} bytes)</p>
+                    <p>Data URL 1 length: ${dataUrl1.length}</p>
+                    <p>Data URL 2 length: ${dataUrl2.length}</p>
+                    <p>Results are same: ${isSame}</p>
+                    <p>Data URL preview: ${dataUrl1.substring(0, 100)}...</p>
+                `;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

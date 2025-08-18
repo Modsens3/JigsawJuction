@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAPA - Γεννήτρια Προσωποποιημένων Puzzle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        .controls-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .preview-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .control-label {
+            min-width: 140px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 80px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .btn-accent {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .templates {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .template-btn {
+            padding: 10px;
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .template-btn:hover {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 12px;
+            background: #ecf0f1;
+            border: 2px dashed #bdc3c7;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .file-upload:hover .file-upload-label {
+            background: #d5dbdb;
+            border-color: #95a5a6;
+        }
+
+        .preview-container {
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #puzzlecontainer {
+            max-width: 100%;
+            max-height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .puzzle-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .info-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .export-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .history-panel {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .history-item {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .history-item:hover {
+            background: #e3f2fd;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .control-label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+            
+            .templates {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: #2ecc71;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: #e74c3c;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Controls Panel -->
+        <div class="controls-panel">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">🧩 Δημιουργός Puzzle</h2>
+            
+            <!-- Templates Section -->
+            <div class="section">
+                <h3>📋 Έτοιμα Πρότυπα</h3>
+                <div class="templates">
+                    <div class="template-btn" onclick="applyTemplate('beginner')">
+                        <strong>Αρχάριος</strong><br>
+                        <small>8×6 (48 κομμάτια)</small>
+                    </div>
+                    <div class="template-btn" onclick="applyTemplate('intermediate')">
+                        <strong>Μέτριος</strong><br>
+                        <small>15×12 (180 κομμάτια)</small>
+                    </div>
+                    <div class="template-btn" onclick="applyTemplate('advanced')">
+                        <strong>Προχωρημένος</strong><br>
+                        <small>25×20 (500 κομμάτια)</small>
+                    </div>
+                    <div class="template-btn" onclick="applyTemplate('expert')">
+                        <strong>Εξπέρτ</strong><br>
+                        <small>40×30 (1200 κομμάτια)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Upload Section -->
+            <div class="section">
+                <h3>🖼️ Φωτογραφία Puzzle</h3>
+                <div class="file-upload">
+                    <input type="file" id="imageFile" accept="image/*" onchange="loadImageForPuzzle()">
+                    <label for="imageFile" class="file-upload-label">
+                        📁 Ανέβασε τη φωτογραφία σου<br>
+                        <small>JPG, PNG, GIF</small>
+                    </label>
+                </div>
+                <div id="imagePreview" style="margin-top: 10px; text-align: center;"></div>
+            </div>
+
+            <!-- Basic Settings -->
+            <div class="section">
+                <h3>⚙️ Βασικές Ρυθμίσεις</h3>
+                
+                <div class="control-group">
+                    <label class="control-label">Τυχαιότητα:</label>
+                    <input id="_seed" type="number" value="0" onchange="update_seed()" />
+                    <input id="seed" type="range" value="0" min="0" max="9999" step="1" onchange="updateseed()" />
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Στήλες:</label>
+                    <input id="_ncols" type="number" value="20" onchange="update_ncols()" />
+                    <input id="ncols" type="range" value="20" min="2" max="50" step="1" onchange="updatencols()" />
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Γραμμές:</label>
+                    <input id="_nrows" type="number" value="20" onchange="update_nrows()" />
+                    <input id="nrows" type="range" value="20" min="2" max="50" step="1" onchange="updatenrows()" />
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Μέγεθος κομματιού:</label>
+                    <input id="cradius" type="number" value="6.0" step="0.1" onchange="update()" />
+                    <span>mm</span>
+                </div>
+            </div>
+
+            <!-- Shape Selection -->
+            <div class="section">
+                <h3>🔸 Σχήμα Κομματιών</h3>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" checked="checked" id="circular" name="tileshape" value="circular">
+                        <label for="circular">Κυκλικό</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="octagonal" name="tileshape" value="octagonal">
+                        <label for="octagonal">Οκτάγωνο</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="square" name="tileshape" value="square">
+                        <label for="square">Τετράγωνο</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Settings -->
+            <div class="section">
+                <h3>🔧 Προχωρημένες Ρυθμίσεις</h3>
+                
+                <div class="control-group">
+                    <label class="control-label">Μέγεθος πλαισίου:</label>
+                    <input id="frame" type="number" value="6.0" step="0.1" onchange="update()" />
+                    <span>mm</span>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Ελάχιστο κομμάτι:</label>
+                    <input id="minpsize" type="number" value="4" onchange="update()" />
+                    <span>σημεία</span>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Μέγιστο κομμάτι:</label>
+                    <input id="maxpsize" type="number" value="50" onchange="update()" />
+                    <span>σημεία</span>
+                </div>
+            </div>
+
+            <!-- Generate Button -->
+            <button class="btn btn-primary" onclick="generate()" style="width: 100%; font-size: 18px; padding: 15px;">
+                🎯 Δημιούργησε Puzzle
+            </button>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="preview-panel">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">👁️ Προεπισκόπηση</h2>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Δημιουργία του puzzle σας...</p>
+            </div>
+
+            <div class="preview-container">
+                <svg id="puzzlecontainer" width="400" height="300">
+                    <text x="50%" y="50%" text-anchor="middle" fill="#bdc3c7" font-size="18">
+                        Πατήστε "Δημιούργησε Puzzle" για να ξεκινήσετε
+                    </text>
+                </svg>
+            </div>
+
+            <!-- Puzzle Info -->
+            <div class="puzzle-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-value" id="piececount">0</div>
+                        <div class="info-label">Κομμάτια</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-value" id="dimensions">0×0</div>
+                        <div class="info-label">Διαστάσεις (mm)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-value" id="difficulty">-</div>
+                        <div class="info-label">Δυσκολία</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-value" id="price">€0.00</div>
+                        <div class="info-label">Εκτιμώμενη Τιμή</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Export Buttons -->
+            <div class="export-buttons">
+                <button class="btn btn-secondary" onclick="savesvg(3)">
+                    🎨 Εξαγωγή Έγχρωμο
+                </button>
+                <button class="btn btn-secondary" onclick="savesvg(0)">
+                    📄 Εξαγωγή Κλασικό
+                </button>
+                <button class="btn btn-secondary" onclick="savesvg(1)">
+                    🔗 Χωρίς Επικάλυψη
+                </button>
+                <button class="btn btn-accent" onclick="exportForOrder()">
+                    🛒 Παραγγελία
+                </button>
+                <button class="btn btn-primary" onclick="savePuzzleToDatabase()">
+                    💾 Αποθήκευση στη Βάση
+                </button>
+            </div>
+
+            <!-- History Panel -->
+            <div class="history-panel">
+                <h4>📚 Ιστορικό Puzzle</h4>
+                <div id="historyContainer">
+                    <p style="text-align: center; color: #7f8c8d;">Δεν υπάρχει ιστορικό ακόμα</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // Global variables
+        var seed = 1;
+        var ncols, nrows, rad, frame, minp, maxp, coloring_seed = 1;
+        var arc_shape = 0;
+        var jig;
+        var customborder = {};
+        var currentImage = null;
+
+        // Utility functions
+        function random() {
+            var x = Math.sin(seed) * 10000; 
+            seed += 1; 
+            return x - Math.floor(x);
+        }
+        
+        function uniform(min, max) { 
+            var r = random(); 
+            return min + r * (max - min); 
+        }
+
+        function $(id) { 
+            return document.getElementById(id); 
+        }
+
+        // Update functions
+        function updateseed() { 
+            $("_seed").value = $("seed").value; 
+            update(); 
+        }
+        
+        function updatencols() { 
+            $("_ncols").value = $("ncols").value; 
+            update(); 
+        }
+        
+        function updatenrows() { 
+            $("_nrows").value = $("nrows").value; 
+            update(); 
+        }
+        
+        function update_seed() { 
+            var val = parseInt($("_seed").value); 
+            if (!isNaN(val)) { 
+                $("seed").value = val; 
+            } 
+            updateseed(); 
+        }
+        
+        function update_ncols() { 
+            var val = parseInt($("_ncols").value); 
+            if (!isNaN(val)) { 
+                $("ncols").value = val; 
+            } 
+            updatencols(); 
+        }
+        
+        function update_nrows() { 
+            var val = parseInt($("_nrows").value); 
+            if (!isNaN(val)) { 
+                $("nrows").value = val; 
+            } 
+            updatenrows(); 
+        }
+
+        // Template system
+        const puzzleTemplates = {
+            beginner: { ncols: 8, nrows: 6, minp: 6, maxp: 12 },
+            intermediate: { ncols: 15, nrows: 12, minp: 4, maxp: 8 },
+            advanced: { ncols: 25, nrows: 20, minp: 3, maxp: 6 },
+            expert: { ncols: 40, nrows: 30, minp: 2, maxp: 4 }
+        };
+
+        function applyTemplate(templateName) {
+            const template = puzzleTemplates[templateName];
+            if (template) {
+                $("ncols").value = template.ncols;
+                $("_ncols").value = template.ncols;
+                $("nrows").value = template.nrows;
+                $("_nrows").value = template.nrows;
+                $("minpsize").value = template.minp;
+                $("maxpsize").value = template.maxp;
+                update();
+                showNotification(`Εφαρμόστηκε πρότυπο: ${templateName}`);
+            }
+        }
+
+        // Image handling
+        function loadImageForPuzzle() {
+            const input = $("imageFile");
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        currentImage = this;
+                        createImagePreview(this);
+                        showNotification("Φωτογραφία φορτώθηκε επιτυχώς!");
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function createImagePreview(img) {
+            const preview = $("imagePreview");
+            preview.innerHTML = `
+                <img src="${img.src}" style="max-width: 100%; max-height: 100px; border-radius: 5px;">
+                <p style="margin-top: 5px; font-size: 12px; color: #7f8c8d;">
+                    ${img.width}×${img.height}px
+                </p>
+            `;
+        }
+
+        function createImagePattern(img) {
+            const svg = $("puzzlecontainer");
+            let defs = svg.querySelector("defs");
+            if (!defs) {
+                defs = document.createElementNS(svg.namespaceURI, "defs");
+                svg.appendChild(defs);
+            }
+            
+            const existingPattern = svg.querySelector("#puzzleImage");
+            if (existingPattern) {
+                existingPattern.remove();
+            }
+            
+            const pattern = document.createElementNS(svg.namespaceURI, "pattern");
+            pattern.setAttribute("id", "puzzleImage");
+            pattern.setAttribute("patternUnits", "userSpaceOnUse");
+            pattern.setAttribute("width", ncols * 2 * rad + 2 * frame);
+            pattern.setAttribute("height", nrows * 2 * rad + 2 * frame);
+            
+            const image = document.createElementNS(svg.namespaceURI, "image");
+            image.setAttribute("href", img.src);
+            image.setAttribute("width", pattern.getAttribute("width"));
+            image.setAttribute("height", pattern.getAttribute("height"));
+            image.setAttribute("preserveAspectRatio", "xMidYMid slice");
+            
+            pattern.appendChild(image);
+            defs.appendChild(pattern);
+        }
+
+        // Price calculation
+        function calculatePrice() {
+            if (!jig) return 0;
+            
+            const pieces = jig.npieces();
+            const basePrice = 15;
+            const pricePerPiece = 0.05;
+            const imageExtra = currentImage ? 3 : 0;
+            
+            const totalPrice = basePrice + (pieces * pricePerPiece) + imageExtra;
+            return Math.round(totalPrice * 100) / 100;
+        }
+
+        function calculateDifficulty() {
+            if (!jig) return "-";
+            
+            const pieces = jig.npieces();
+            if (pieces < 100) return "Εύκολο";
+            if (pieces < 300) return "Μέτριο";
+            if (pieces < 500) return "Δύσκολο";
+            return "Εξτρέμ";
+        }
+
+        // Update preview info
+        function updatePreviewInfo() {
+            if (!jig) return;
+            
+            $("piececount").textContent = jig.npieces();
+            $("dimensions").textContent = `${Math.round(ncols * 2 * rad + 2 * frame)}×${Math.round(nrows * 2 * rad + 2 * frame)}`;
+            $("difficulty").textContent = calculateDifficulty();
+            $("price").textContent = `€${calculatePrice()}`;
+        }
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const notification = $("notification");
+            notification.textContent = message;
+            notification.className = `notification show ${type}`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // History management
+        function savesvg(mode) {
+            if (!jig) {
+                showNotification("Δημιουργήστε πρώτα ένα puzzle!", "error");
+                return;
+            }
+            
+            let filename = "puzzle.svg";
+            let data;
+            
+            switch (mode) {
+                case 0:
+                    data = jig.exportsvg(frame, rad, arc_shape);
+                    filename = "puzzle-classic.svg";
+                    break;
+                case 1:
+                    data = jig.exportsvg_nooverlap(frame, rad, arc_shape);
+                    filename = "puzzle-no-overlap.svg";
+                    break;
+                case 2:
+                    data = jig.exportsvg_nooverlap_singlepath(frame, rad, arc_shape);
+                    filename = "puzzle-single-path.svg";
+                    break;
+                case 3:
+                    data = jig.exportsvg_colored(frame, rad, arc_shape);
+                    filename = "puzzle-colored.svg";
+                    break;
+            }
+            
+            save(filename, data);
+            showNotification(`Αρχείο ${filename} εξήχθη επιτυχώς!`);
+        }
+
+        function save(filename, data) {
+            var blob = new Blob([data], { type: "image/svg+xml" });
+            if (window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveBlob(blob, filename);
+            } else {
+                var elem = window.document.createElement('a');
+                elem.href = window.URL.createObjectURL(blob);
+                elem.download = filename;
+                document.body.appendChild(elem);
+                elem.click();
+                document.body.removeChild(elem);
+            }
+        }
+
+        function createframe() {
+            var width = ncols * 2 * rad + 2 * frame;
+            var height = nrows * 2 * rad + 2 * frame;
+            var framecorner = 4.0;
+
+            var data = "M" + framecorner + "," + 0 + " ";
+            data += "H " + (width - framecorner);
+            if (framecorner > 0) {
+                data += "A " + framecorner + " " + framecorner + " 0 0,1 " + width + " " + framecorner + " ";
+            }
+
+            data += "V " + (height - framecorner);
+            if (framecorner > 0) {
+                data += "A " + framecorner + " " + framecorner + " 0 0,1 " + (width - framecorner) + " " + height + " ";
+            }
+
+            data += "H " + (framecorner);
+            if (framecorner > 0) {
+                data += "A " + framecorner + " " + framecorner + " 0 0,1 " + 0 + " " + (height - framecorner) + " ";
+            }
+
+            data += "V " + (framecorner);
+            if (framecorner > 0) {
+                data += "A " + framecorner + " " + framecorner + " 0 0,1 " + (framecorner) + " " + 0 + " ";
+            }
+
+            data += "Z";
+            return data;
+        }
+
+        // Main generate function
+        function generate() {
+            $("loading").style.display = "block";
+            
+            setTimeout(() => {
+                try {
+                    parse_input();
+                    const container = $("puzzlecontainer");
+                    
+                    while (container.firstChild) {
+                        container.removeChild(container.firstChild);
+                    }
+
+                    if ($("octagonal").checked) {
+                        arc_shape = 2;
+                    } else if ($("square").checked) {
+                        arc_shape = 1;
+                    } else {
+                        arc_shape = 0;
+                    }
+
+                    jig = new CircleFractalJigsaw(ncols, nrows, minp, maxp, customborder, rad);
+                    nrows = jig.nrows;
+                    ncols = jig.ncols;
+                    jig.generate();
+                    
+                    while (jig.fillholes(false));
+                    jig.fillholes(true);
+
+                    const width = ncols * 2 * rad + 2 * frame;
+                    const height = nrows * 2 * rad + 2 * frame;
+                    container.setAttribute("width", width);
+                    container.setAttribute("height", height);
+                    container.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+                    if (currentImage) {
+                        createImagePattern(currentImage);
+                    }
+
+                    let framedraw = document.createElementNS(container.namespaceURI, "path");
+                    framedraw.setAttribute("d", createframe());
+                    framedraw.setAttribute("stroke", "#2c3e50");
+                    framedraw.setAttribute("fill", "none");
+                    framedraw.setAttribute("stroke-width", 1);
+                    container.appendChild(framedraw);
+
+                    coloring_seed = seed;
+                    jig.multipaths(frame, rad, arc_shape).forEach((p) => {
+                        let newpath = document.createElementNS(container.namespaceURI, "path");
+                        newpath.setAttribute("d", p);
+                        newpath.setAttribute("stroke", "#2c3e50");
+                        newpath.setAttribute("stroke-width", rad / 20.0);
+                        
+                        if (currentImage) {
+                            newpath.setAttribute("fill", "url(#puzzleImage)");
+                        } else {
+                            newpath.setAttribute("fill", "#" + Math.floor(uniform(0, 16777216)).toString(16));
+                        }
+                        
+                        container.appendChild(newpath);
+                    });
+
+                    updatePreviewInfo();
+                    saveToHistory();
+                    
+                    showNotification(`Puzzle δημιουργήθηκε με ${jig.npieces()} κομμάτια!`);
+                    
+                } catch (error) {
+                    console.error("Error generating puzzle:", error);
+                    showNotification("Σφάλμα κατά τη δημιουργία του puzzle", "error");
+                } finally {
+                    $("loading").style.display = "none";
+                }
+            }, 100);
+        }
+
+        // Puzzle Classes
+        class Tile {
+            constructor(x, y) {
+                this._x = x;
+                this._y = y;
+                this.haspossibleconnections = true;
+            }
+            get x() { return this._x; }
+            get y() { return this._y; }
+            get hasconnections() { return this.haspossibleconnections; }
+            set hasconnections(val) { this.haspossibleconnections = val; }
+            eq(p) { return (this.x == p.x && this.y == p.y); }
+        }
+
+        class Cell {
+            constructor(x, y) {
+                this._x = x;
+                this._y = y;
+            }
+            get x() { return this._x; }
+            get y() { return this._y; }
+            eq(c) { return (this.x == c.x && this.y == c.y); }
+        }
+
+        class DiagonalConnection {
+            constructor(p1, p2, p2_taken) {
+                this._p1 = p1;
+                this._p2 = p2;
+                this._p2_taken = p2_taken;
+                this._slope = (p2.y - p1.y) / (p2.x - p1.x);
+                var ccx = Math.min(p2.x, p1.x);
+                var ccy = Math.min(p2.y, p1.y);
+                this._cell = new Cell(ccx, ccy);
+                if (this._slope > 0) {
+                    if (p2.y > p1.y) {
+                        this._quad = 3;
+                    } else {
+                        this._quad = 1;
+                    }
+                } else {
+                    if (p2.y > p1.y) {
+                        this._quad = 2;
+                    } else {
+                        this._quad = 0;
+                    }
+                }
+            }
+            
+            eq(other) {
+                return (this === other) || (this.cell.x == other.cell.x && this.cell.y == other.cell.y && this.slope == other.slope && this.p2_taken == other.p2_taken)
+            }
+            
+            get slope() { return this._slope; }
+            get quad() { return this._quad; }
+            get p1() { return this._p1; }
+            get p2() { return this._p2; }
+            get cell() { return this._cell; }
+            get p2_taken() { return this._p2_taken }
+            
+            static FromPointAndQuad(p1, quadrant, p2_taken) {
+                var p2;
+                switch (quadrant) {
+                    case 0: p2 = new Tile(p1.x + 1, p1.y - 1); break;
+                    case 1: p2 = new Tile(p1.x - 1, p1.y - 1); break;
+                    case 2: p2 = new Tile(p1.x - 1, p1.y + 1); break;
+                    case 3: p2 = new Tile(p1.x + 1, p1.y + 1); break;
+                }
+                return new DiagonalConnection(p1, p2, p2_taken);
+            }
+        }
+
+        class CellGrid {
+            constructor(nrow, ncol) {
+                this.nrow = nrow;
+                this.ncol = ncol;
+                this.visited = new Array(this.ncol * this.nrow).fill(false);
+                this.cellmap = new Array((this.ncol - 1) * (this.nrow - 1)).fill(false);
+                this._nunvisited = this.ncol * this.nrow;
+            }
+
+            randomemptytile() {
+                var emptytiles = this.visited.reduce(function (acc, curr, index) {
+                    if (!curr) {
+                        acc.push(index);
+                    }
+                    return acc;
+                }, []);
+
+                var index = emptytiles[Math.floor(uniform(0, emptytiles.length))];
+                var y = Math.floor(index / this.nrow);
+                var x = index % this.nrow;
+                return new Tile(x, y);
+            }
+
+            reset() {
+                this.visited.fill(false);
+                this.cellmap.fill(false);
+                this._nunvisited = this.ncol * this.nrow;
+            }
+            
+            istilevalid(v) {
+                return (v.x >= 0 && v.x < this.nrow && v.y >= 0 && v.y < this.ncol);
+            }
+
+            istilevisited(v) {
+                return this.visited[v.y * this.nrow + v.x];
+            }
+            
+            iscellempty(c) {
+                return !this.cellmap[c.y * this.nrow + c.x];
+            }
+            
+            visittile(v) {
+                if (!this.visited[v.y * this.nrow + v.x]) {
+                    this.visited[v.y * this.nrow + v.x] = true;
+                    this._nunvisited--;
+                }
+            }
+            
+            occupycell(c) {
+                if (!this.cellmap[c.y * this.nrow + c.x]) {
+                    this.cellmap[c.y * this.nrow + c.x] = true;
+                }
+            }
+            
+            liberatecell(c) {
+                this.cellmap[c.y * this.nrow + c.x] = false;
+            }
+
+            get nunvisited() {
+                return this._nunvisited;
+            }
+        }
+
+        class Arc {
+            constructor(gcp, rad, offs, quad, sign) {
+                this._cp = new Tile(gcp.x * 2 * rad + rad + offs, gcp.y * 2 * rad + rad + offs);
+                this._quad = quad;
+                this._rad = rad;
+                this._sign = sign
+                var pa, pb;
+                switch (quad) {
+                    case 0:
+                        pa = new Tile(this._cp.x + rad, this._cp.y);
+                        pb = new Tile(this._cp.x, this._cp.y - rad);
+                        break;
+                    case 1:
+                        pa = new Tile(this._cp.x, this._cp.y - rad);
+                        pb = new Tile(this._cp.x - rad, this._cp.y);
+                        break;
+                    case 2:
+                        pa = new Tile(this._cp.x - rad, this._cp.y);
+                        pb = new Tile(this._cp.x, this._cp.y + rad);
+                        break;
+                    case 3:
+                        pa = new Tile(this._cp.x, this._cp.y + rad);
+                        pb = new Tile(this._cp.x + rad, this._cp.y);
+                        break;
+                }
+                if (this.sign == 0) {
+                    this._sp = pa;
+                    this._ep = pb;
+                } else {
+                    this._sp = pb;
+                    this._ep = pa;
+                }
+            }
+            
+            svg(arcshape) {
+                const tan225 = 0.4142135623730950488016887242097;
+                var hlen = this._rad * tan225;
+                switch (arcshape) {
+                    case 0:
+                        return "A " + this._rad + " " + this._rad + " 0 0," + this.sign + " " + this.ep.x + " " + this.ep.y + " ";
+                    case 1:
+                        return "L " + this.ep.x + " " + this.ep.y + " ";
+                    case 2:
+                        var quad = this._quad;
+                        var sp = this.sp;
+                        var ep = this.ep;
+                        if (this._sign == 1) {
+                            sp = this.ep;
+                            ep = this.sp;
+                        }
+                        var mp1, mp2;
+                        switch (quad) {
+                            case 0:
+                                mp1 = [sp.x, sp.y - hlen];
+                                mp2 = [ep.x + hlen, ep.y];
+                                break;
+                            case 1:
+                                mp1 = [sp.x - hlen, sp.y];
+                                mp2 = [ep.x, ep.y - hlen];
+                                break;
+                            case 2:
+                                mp1 = [sp.x, sp.y + hlen];
+                                mp2 = [ep.x - hlen, ep.y];
+                                break;
+                            case 3:
+                                mp1 = [sp.x + hlen, sp.y];
+                                mp2 = [ep.x, ep.y + hlen];
+                                break;
+                        }
+                        if (this._sign == 1) {
+                            return "L " + mp2[0] + " " + mp2[1] + " L " + mp1[0] + " " + mp1[1] + " L " + this.ep.x + " " + this.ep.y + " ";
+                        } else {
+                            return "L " + mp1[0] + " " + mp1[1] + " L " + mp2[0] + " " + mp2[1] + " L " + this.ep.x + " " + this.ep.y + " ";
+                        }
+                }
+            }
+            
+            eq(a) {
+                return (this.quad == a.quad && this.cp.eq(a.cp));
+            }
+            
+            get cp() { return this._cp; }
+            get sign() { return this._sign; }
+            get sp() { return this._sp; }
+            get ep() { return this._ep; }
+            get quad() { return this._quad; }
+        }
+
+        class CircleFractalJigsaw {
+            constructor(ncols, nrows, minpiecelen, maxpiecelen, border, crad) {
+                this.ncols = ncols;
+                this.nrows = nrows;
+                this.grid = new CellGrid(ncols, nrows);
+                this.pieces = [];
+                this.maxpiecelen = maxpiecelen;
+                this.minpiecelen = minpiecelen;
+                this.maskgrid = Array(nrows).fill().map(() => Array(ncols).fill(0));
+            }
+
+            possibleconnections(mytiles, allowpartials) {
+                var pcs = [];
+                var neighbors = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
+                mytiles.forEach((v) => {
+                    if (v.hasconnections || allowpartials) {
+                        v.hasconnections = false;
+                        neighbors.forEach((n) => {
+                            let cpt = new Tile(v.x + n[0], v.y + n[1]);
+                            if (this.grid.istilevalid(cpt) && !this.maskgrid[cpt.y][cpt.x] && !mytiles.find(nv => nv.eq(cpt))) {
+                                let dc = new DiagonalConnection(v, cpt, !this.grid.istilevisited(cpt));
+                                if (this.grid.iscellempty(dc.cell)) {
+                                    if (allowpartials || !this.grid.istilevisited(cpt)) {
+                                        pcs.push(dc);
+                                        v.hasconnections = true;
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+                return pcs;
+            }
+
+            createpiece() {
+                var mytiles = new Array();
+                var myconnections = new Array();
+                var targetpiecelen = Math.round(uniform(this.minpiecelen, this.maxpiecelen));
+                var vi = this.grid.randomemptytile();
+                mytiles.push(vi);
+                this.grid.visittile(vi);
+
+                while (this.grid.nunvisited > 0 && mytiles.length < targetpiecelen) {
+                    var possibleconnections = this.possibleconnections(mytiles, false);
+                    if (possibleconnections.length == 0) {
+                        break;
+                    }
+                    var chosenconnection = possibleconnections[Math.floor(uniform(0, possibleconnections.length))];
+                    myconnections.push(chosenconnection);
+                    mytiles.push(chosenconnection.p2);
+                    this.grid.occupycell(chosenconnection.cell);
+                    this.grid.visittile(chosenconnection.p2);
+                }
+
+                if (mytiles.length >= this.minpiecelen) {
+                    this.pieces.push(myconnections);
+                } else {
+                    myconnections.forEach((c) => {
+                        this.grid.liberatecell(c.cell);
+                    })
+                }
+            }
+
+            fillholes(allowpartials) {
+                var filled = false;
+                this.pieces = this.pieces.sort((a, b) => a.length - b.length);
+                this.pieces.forEach((p) => {
+                    var tiles = [p[0].p1];
+                    p.forEach((con) => {
+                        tiles.push(con.p2);
+                    });
+                    tiles.forEach((v) => {
+                        var possibleconnections = this.possibleconnections([v], allowpartials);
+                        if (possibleconnections.length) {
+                            possibleconnections = possibleconnections.filter(function (ele) {
+                                return !Boolean(tiles.find(vf => vf.eq(ele.p2)));
+                            });
+                            possibleconnections.forEach((pc) => {
+                                p.push(pc);
+                                tiles.push(pc.p2);
+                                filled = true;
+                                this.grid.occupycell(pc.cell);
+                                this.grid.visittile(pc.p2);
+                            });
+                        }
+                    });
+                });
+                return filled;
+            }
+
+            static addarcs(con, connections, arcs, rad, frame, first) {
+                var newarc;
+                switch (con.quad) {
+                    case 0:
+                        newarc = new Arc(new Tile(con.p1.x + 1, con.p1.y), rad, frame, 1, 1);
+                        break;
+                    case 1:
+                        newarc = new Arc(new Tile(con.p1.x, con.p1.y - 1), rad, frame, 2, 1);
+                        break;
+                    case 2:
+                        newarc = new Arc(new Tile(con.p1.x - 1, con.p1.y), rad, frame, 3, 1);
+                        break;
+                    case 3:
+                        newarc = new Arc(new Tile(con.p1.x, con.p1.y + 1), rad, frame, 0, 1);
+                        break;
+                }
+                arcs.push(newarc);
+                
+                if (con.p2_taken) {
+                    var p2quads = [(con.quad + 3) % 4, (con.quad + 4) % 4, (con.quad + 5) % 4];
+                    p2quads.forEach((q) => {
+                        var pct = DiagonalConnection.FromPointAndQuad(con.p2, q, true);
+                        var pcnt = DiagonalConnection.FromPointAndQuad(con.p2, q, false);
+                        if (connections.find(c => c.eq(pct))) {
+                            CircleFractalJigsaw.addarcs(pct, connections, arcs, rad, frame, false);
+                        } else if (connections.find(c => c.eq(pcnt))) {
+                            CircleFractalJigsaw.addarcs(pcnt, connections, arcs, rad, frame, false);
+                        } else {
+                            arcs.push(new Arc(con.p2, rad, frame, q, 0));
+                        }
+                    });
+                } else {
+                    arcs.push(new Arc(con.p2, rad, frame, (con.quad + 2) % 4, 1));
+                }
+
+                switch (con.quad) {
+                    case 0:
+                        newarc = new Arc(new Tile(con.p1.x, con.p1.y - 1), rad, frame, 3, 1);
+                        break;
+                    case 1:
+                        newarc = new Arc(new Tile(con.p1.x - 1, con.p1.y), rad, frame, 0, 1);
+                        break;
+                    case 2:
+                        newarc = new Arc(new Tile(con.p1.x, con.p1.y + 1), rad, frame, 1, 1);
+                        break;
+                    case 3:
+                        newarc = new Arc(new Tile(con.p1.x + 1, con.p1.y), rad, frame, 2, 1);
+                        break;
+                }
+                arcs.push(newarc);
+
+                if (first) {
+                    var p1quads = [(con.quad + 1) % 4, (con.quad + 2) % 4, (con.quad + 3) % 4];
+                    p1quads.forEach((q) => {
+                        var pct = DiagonalConnection.FromPointAndQuad(con.p1, q, true);
+                        var pcnt = DiagonalConnection.FromPointAndQuad(con.p1, q, false);
+                        if (connections.find(c => c.eq(pct))) {
+                            CircleFractalJigsaw.addarcs(pct, connections, arcs, rad, frame, false);
+                        } else if (connections.find(c => c.eq(pcnt))) {
+                            CircleFractalJigsaw.addarcs(pcnt, connections, arcs, rad, frame, false);
+                        } else {
+                            arcs.push(new Arc(con.p1, rad, frame, q, 0));
+                        }
+                    });
+                }
+            }
+
+            exportsvg_colored(border, crad, arcshape) {
+                var width = this.ncols * 2 * crad + 2 * border;
+                var height = this.nrows * 2 * crad + 2 * border;
+                var data = `<?xml version="1.0" encoding="utf-8" ?><svg baseProfile="full" height="${height}mm" version="1.1" viewBox="0 0 ${width} ${height}" width="${width}mm" xmlns="http://www.w3.org/2000/svg"><defs />`;
+                
+                seed = coloring_seed;
+                this.multipaths(frame, rad, arcshape).forEach((p) => {
+                    data += `<path fill="#${Math.floor(uniform(0, 16777216)).toString(16)}" stroke="black" stroke-width="${rad / 20.0}" d="${p}"></path>`;
+                });
+                
+                data += `<path fill="none" stroke="black" stroke-width="0.1" d="${createframe()}"></path>`;
+                data += "</svg>";
+                return data;
+            }
+
+            exportsvg(frame, crad, arcshape) {
+                var width = this.ncols * 2 * crad + 2 * frame;
+                var height = this.nrows * 2 * crad + 2 * frame;
+                var data = `<?xml version="1.0" encoding="utf-8" ?><svg baseProfile="full" height="${height}mm" version="1.1" viewBox="0 0 ${width} ${height}" width="${width}mm" xmlns="http://www.w3.org/2000/svg"><defs />`;
+
+                this.pieces.forEach((p) => {
+                    var arcs = [];
+                    CircleFractalJigsaw.addarcs(p[0], p, arcs, crad, frame, true);
+                    data += `<path fill="none" stroke="black" stroke-width="0.1" d="M${arcs[0].sp.x},${arcs[0].sp.y} `;
+                    arcs.forEach((a) => {
+                        data += a.svg(arcshape);
+                    });
+                    data += 'Z"></path>';
+                });
+                
+                data += `<path fill="none" stroke="black" stroke-width="0.1" d="${createframe()}"></path>`;
+                data += "</svg>";
+                return data;
+            }
+
+            exportsvg_nooverlap(frame, crad, arcshape) {
+                var width = this.ncols * 2 * crad + 2 * frame;
+                var height = this.nrows * 2 * crad + 2 * frame;
+                var data = `<?xml version="1.0" encoding="utf-8" ?><svg baseProfile="full" height="${height}mm" version="1.1" viewBox="0 0 ${width} ${height}" width="${width}mm" xmlns="http://www.w3.org/2000/svg"><defs />`;
+                
+                var allarcs = [];
+                var path = "";
+                this.pieces.forEach((p) => {
+                    var inpath = false;
+                    var arcs = [];
+                    CircleFractalJigsaw.addarcs(p[0], p, arcs, crad, frame, true);
+                    arcs.forEach((a) => {
+                        if (allarcs.find(na => na.eq(a))) {
+                            if (inpath) {
+                                path += '"></path>';
+                                data += path;
+                                inpath = false;
+                            }
+                        } else {
+                            allarcs.push(a);
+                            if (!inpath) {
+                                path = `<path fill="none" stroke="black" stroke-width="0.1" d="M${a.sp.x},${a.sp.y} `;
+                                inpath = true;
+                            }
+                            path += a.svg(arcshape);
+                        }
+                    });
+                    if (inpath) {
+                        path += '"></path>';
+                        data += path;
+                    }
+                });
+                
+                data += `<path fill="none" stroke="black" stroke-width="0.1" d="${createframe()}"></path>`;
+                data += "</svg>";
+                return data;
+            }
+
+            exportsvg_nooverlap_singlepath(frame, crad, arcshape) {
+                var width = this.ncols * 2 * crad + 2 * frame;
+                var height = this.nrows * 2 * crad + 2 * frame;
+                var data = `<?xml version="1.0" encoding="utf-8" ?><svg baseProfile="full" height="${height}mm" version="1.1" viewBox="0 0 ${width} ${height}" width="${width}mm" xmlns="http://www.w3.org/2000/svg"><defs />`;
+                
+                var allarcs = [];
+                data += '<path fill="none" stroke="black" stroke-width="0.1" d="';
+                var currentlocation = new Tile(-1, -1);
+                this.pieces.forEach((p) => {
+                    var arcs = [];
+                    CircleFractalJigsaw.addarcs(p[0], p, arcs, crad, frame, true);
+                    arcs.forEach((a) => {
+                        if (!allarcs.find(na => na.eq(a))) {
+                            allarcs.push(a);
+                            if (!a.sp.eq(currentlocation)) {
+                                data += `M${a.sp.x},${a.sp.y} `;
+                            }
+                            data += a.svg(arcshape);
+                            currentlocation = a.ep;
+                        }
+                    });
+                });
+                data += '"></path>';
+                
+                data += `<path fill="none" stroke="black" stroke-width="0.1" d="${createframe()}"></path>`;
+                data += "</svg>";
+                return data;
+            }
+
+            multipaths(frame, crad, arcshape) {
+                var paths = [];
+                this.pieces.forEach((p) => {
+                    var data = "";
+                    var arcs = [];
+                    CircleFractalJigsaw.addarcs(p[0], p, arcs, crad, frame, true);
+                    data += `M${arcs[0].sp.x},${arcs[0].sp.y} `;
+                    arcs.forEach((a) => {
+                        data += a.svg(arcshape);
+                    });
+                    data += "Z";
+                    paths.push(data);
+                });
+                return paths;
+            }
+
+            generate() {
+                while (this.grid.nunvisited) {
+                    this.createpiece();
+                }
+                this.regenerategrid();
+            }
+
+            npieces() {
+                return this.pieces.length;
+            }
+
+            regenerategrid() {
+                this.grid.reset();
+
+                for (var i = 0; i < this.nrows; i++) {
+                    for (var j = 0; j < this.ncols; j++) {
+                        if (this.maskgrid[i][j]) {
+                            this.grid.occupycell({ x: j, y: i });
+                        }
+                    }
+                }
+                
+                this.pieces.forEach((p) => {
+                    p.forEach((c) => {
+                        if (!this.grid.istilevisited(c.p1)) {
+                            this.grid.visittile(c.p1);
+                        }
+                        if (c.p2_taken) {
+                            if (!this.grid.istilevisited(c.p2)) {
+                                this.grid.visittile(c.p2);
+                            }
+                        }
+                        this.grid.occupycell(c.cell);
+                    });
+                });
+            }
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            $('seed').value = Math.floor(Math.random() * 10000);
+            updateseed();
+            updateHistoryUI();
+            update();
+        };
+    </script>
+</body>
+</html>ToHistory() {
+            if (!jig) return;
+            
+            const puzzleData = {
+                seed: seed,
+                ncols: ncols,
+                nrows: nrows,
+                pieces: jig.npieces(),
+                price: calculatePrice(),
+                difficulty: calculateDifficulty(),
+                timestamp: Date.now(),
+                hasImage: !!currentImage
+            };
+            
+            let history = JSON.parse(localStorage.getItem('puzzleHistory') || '[]');
+            history.unshift(puzzleData);
+            history = history.slice(0, 10);
+            
+            localStorage.setItem('puzzleHistory', JSON.stringify(history));
+            updateHistoryUI();
+        }
+
+        function updateHistoryUI() {
+            const container = $("historyContainer");
+            const history = JSON.parse(localStorage.getItem('puzzleHistory') || '[]');
+            
+            if (history.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #7f8c8d;">Δεν υπάρχει ιστορικό ακόμα</p>';
+                return;
+            }
+            
+            container.innerHTML = history.map(item => `
+                <div class="history-item" onclick="loadFromHistory(${item.timestamp})">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>${item.pieces} κομμάτια</strong> (${item.difficulty})
+                            ${item.hasImage ? '🖼️' : ''}
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: bold;">€${item.price}</div>
+                            <div style="font-size: 12px; color: #7f8c8d;">
+                                ${new Date(item.timestamp).toLocaleDateString()}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadFromHistory(timestamp) {
+            const history = JSON.parse(localStorage.getItem('puzzleHistory') || '[]');
+            const item = history.find(h => h.timestamp === timestamp);
+            
+            if (item) {
+                $("seed").value = item.seed;
+                $("_seed").value = item.seed;
+                $("ncols").value = item.ncols;
+                $("_ncols").value = item.ncols;
+                $("nrows").value = item.nrows;
+                $("_nrows").value = item.nrows;
+                
+                update();
+                showNotification("Ρυθμίσεις φορτώθηκαν από το ιστορικό");
+            }
+        }
+
+        // Export functions
+        function exportForOrder() {
+            if (!jig) {
+                showNotification("Δημιουργήστε πρώτα ένα puzzle!", "error");
+                return;
+            }
+            
+            const orderData = {
+                puzzleSpecs: {
+                    pieces: jig.npieces(),
+                    dimensions: {
+                        width: Math.round(ncols * 2 * rad + 2 * frame),
+                        height: Math.round(nrows * 2 * rad + 2 * frame)
+                    },
+                    shape: getSelectedShape(),
+                    difficulty: calculateDifficulty(),
+                    seed: seed,
+                    hasImage: !!currentImage
+                },
+                customerImage: currentImage ? currentImage.src : null,
+                svgData: jig.exportsvg_colored(frame, rad, arc_shape),
+                price: calculatePrice(),
+                timestamp: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(orderData, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `puzzle-order-${Date.now()}.json`;
+            a.click();
+            
+            showNotification("Δεδομένα παραγγελίας εξήχθησαν!");
+        }
+
+        // Save puzzle to database
+        async function savePuzzleToDatabase() {
+            if (!jig) {
+                showNotification("Δημιουργήστε πρώτα ένα puzzle!", "error");
+                return;
+            }
+            
+            try {
+                showNotification("Αποθήκευση παζλ στη βάση δεδομένων...", "info");
+                
+                // Generate SVG without frame for laser cutting - single path
+                const svgWithoutFrame = jig.exportsvg_nooverlap_singlepath(0, rad, arc_shape);
+                
+                // Convert image to data URL if it's a blob URL
+                let imageData = null;
+                if (currentImage) {
+                    console.log("=== IMAGE CONVERSION DEBUG ===");
+                    console.log("Original image src:", currentImage.src.substring(0, 50));
+                    console.log("Image complete:", currentImage.complete);
+                    console.log("Image natural dimensions:", currentImage.naturalWidth, "x", currentImage.naturalHeight);
+                    
+                    if (currentImage.src.startsWith('blob:')) {
+                        console.log("BLOB URL DETECTED - Starting conversion...");
+                        
+                        // Method 1: Try to get the original file from the input
+                        const fileInput = $("imageFile");
+                        if (fileInput && fileInput.files && fileInput.files[0]) {
+                            console.log("Found original file in input:", fileInput.files[0].name, fileInput.files[0].size, "bytes");
+                            
+                            try {
+                                imageData = await new Promise((resolve, reject) => {
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        const result = e.target.result;
+                                        console.log("FileReader from input successful, size:", result.length, "characters");
+                                        resolve(result);
+                                    };
+                                    reader.onerror = function(e) {
+                                        console.error("FileReader from input failed:", e);
+                                        reject(e);
+                                    };
+                                    reader.readAsDataURL(fileInput.files[0]);
+                                });
+                                console.log("SUCCESS: Converted using original file input");
+                            } catch (error) {
+                                console.error("FileReader from input failed:", error);
+                                imageData = null;
+                            }
+                        } else {
+                            console.log("No original file found in input, trying blob URL fetch...");
+                            
+                            // Method 2: Fetch from blob URL
+                            try {
+                                const response = await fetch(currentImage.src);
+                                const blob = await response.blob();
+                                
+                                console.log("Blob fetched successfully:", blob.size, "bytes, type:", blob.type);
+                                
+                                imageData = await new Promise((resolve, reject) => {
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        const result = e.target.result;
+                                        console.log("FileReader from blob successful, size:", result.length, "characters");
+                                        resolve(result);
+                                    };
+                                    reader.onerror = function(e) {
+                                        console.error("FileReader from blob failed:", e);
+                                        reject(e);
+                                    };
+                                    reader.readAsDataURL(blob);
+                                });
+                                console.log("SUCCESS: Converted using blob URL fetch");
+                            } catch (error) {
+                                console.error("Blob URL fetch failed:", error);
+                                imageData = null;
+                            }
+                        }
+                    } else {
+                        imageData = currentImage.src;
+                        console.log("Using existing data URL (not a blob)");
+                    }
+                    
+                    console.log("=== END IMAGE CONVERSION DEBUG ===");
+                } else {
+                    console.log("No current image to process");
+                }
+                
+                const orderData = {
+                    puzzleSpecs: {
+                        pieces: jig.npieces(),
+                        dimensions: {
+                            width: Math.round(ncols * 2 * rad),
+                            height: Math.round(nrows * 2 * rad)
+                        },
+                        shape: getSelectedShape(),
+                        difficulty: calculateDifficulty(),
+                        seed: seed,
+                        hasImage: !!currentImage
+                    },
+                    customerImage: imageData,
+                    svgData: svgWithoutFrame,
+                    price: calculatePrice(),
+                    customerInfo: {
+                        name: prompt("Εισάγετε το όνομά σας (προαιρετικό):") || "Anonymous",
+                        email: prompt("Εισάγετε το email σας (προαιρετικό):") || "anonymous@example.com",
+                        phone: prompt("Εισάγετε το τηλέφωνό σας (προαιρετικό):") || ""
+                    }
+                };
+                
+                const response = await fetch('/api/puzzle/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(orderData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to save puzzle');
+                }
+                
+                const result = await response.json();
+                
+                showNotification(`Το παζλ αποθηκεύθηκε επιτυχώς! Order ID: ${result.orderId}`, "success");
+                
+                // Also save to local history
+                saveToHistory();
+                
+            } catch (error) {
+                console.error('Error saving puzzle:', error);
+                showNotification("Σφάλμα κατά την αποθήκευση του παζλ", "error");
+            }
+        }
+
+        function getSelectedShape() {
+            if ($("octagonal").checked) return "octagonal";
+            if ($("square").checked) return "square";
+            return "circular";
+        }
+
+        function parse_input() {
+            seed = parseInt($("seed").value);
+            ncols = parseInt($("ncols").value);
+            nrows = parseInt($("nrows").value);
+            frame = parseFloat($("frame").value);
+            rad = parseFloat($("cradius").value);
+            minp = parseInt($("minpsize").value);
+            maxp = parseInt($("maxpsize").value);
+        }
+
+        function update() {
+            parse_input();
+            updatePreviewInfo();
+        }
+
+        function save

@@ -1,0 +1,913 @@
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PuzzleCraft - Προσωποποιημένα Παζλ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D97706',
+                        secondary: '#059669',
+                        accent: '#DC2626',
+                        neutral: '#374151'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- @COMPONENT: Header [navigation, cart, language] -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-primary">PuzzleCraft</h1>
+                    </div>
+                    <nav class="hidden md:ml-10 md:flex space-x-8">
+                        <a href="#configurator" class="text-neutral hover:text-primary transition-colors">Δημιουργία</a>
+                        <a href="#templates" class="text-neutral hover:text-primary transition-colors">Πρότυπα</a>
+                        <a href="#materials" class="text-neutral hover:text-primary transition-colors">Υλικά</a>
+                        <a href="#about" class="text-neutral hover:text-primary transition-colors">Σχετικά</a>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button data-event="click:toggleCart" class="relative p-2 text-neutral hover:text-primary transition-colors">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" data-bind="cartCount">3</span>
+                    </button>
+                    <button class="md:hidden p-2 text-neutral hover:text-primary transition-colors" data-event="click:toggleMobileMenu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: Hero [main value proposition] -->
+    <section class="bg-gradient-to-br from-primary/10 to-secondary/10 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-neutral mb-6">
+                        Δημιουργήστε το Τέλειο<br>
+                        <span class="text-primary">Προσωποποιημένο Παζλ</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Μετατρέψτε τις αγαπημένες σας φωτογραφίες σε μοναδικά παζλ υψηλής ποιότητας. 
+                        Επιλέξτε από ξύλο, ακρυλικό ή χαρτί με διάφορα μεγέθη και αριθμό κομματιών.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                            Ξεκινήστε Τώρα
+                        </button>
+                        <button class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors">
+                            Δείτε Πρότυπα
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <!-- A collection of colorful jigsaw puzzle pieces scattered artistically on a white background -->
+                    <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Colorful jigsaw puzzle pieces" 
+                         class="rounded-2xl shadow-2xl w-full h-auto transform rotate-3 hover:rotate-0 transition-transform duration-300" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero -->
+
+    <!-- @COMPONENT: ProductConfigurator [main customization interface] -->
+    <section id="configurator" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold text-neutral mb-4">Δημιουργήστε το Παζλ σας</h3>
+                <p class="text-xl text-gray-600">Ακολουθήστε τα απλά βήματα για να φτιάξετε το τέλειο προσωποποιημένο παζλ</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Configuration Panel -->
+                <div class="space-y-8">
+                    <!-- @STATE: uploadedImage:string = null, selectedTemplate:string = null -->
+                    <!-- Step 1: Image Upload -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h4 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1</span>
+                            Επιλέξτε Εικόνα
+                        </h4>
+                        <div class="space-y-4">
+                            <div data-implementation="FileUpload component with image preview" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                                <p class="text-gray-600 mb-2">Σύρετε την εικόνα εδώ ή κάντε κλικ για επιλογή</p>
+                                <p class="text-sm text-gray-500">PNG, JPG μέχρι 10MB</p>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-gray-500">ή</span>
+                            </div>
+                            <button class="w-full bg-secondary text-white py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors">
+                                Επιλέξτε από Πρότυπα
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Size Selection -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h4 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">2</span>
+                            Μέγεθος
+                        </h4>
+                        <!-- @STATE: selectedSize:string = '30x40' -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="border-2 border-primary bg-primary/10 text-primary p-3 rounded-lg font-medium text-center transition-colors" data-selected="true">
+                                <div class="text-lg font-semibold">30x40 cm</div>
+                                <div class="text-sm">Μικρό</div>
+                            </button>
+                            <button class="border-2 border-gray-300 text-gray-600 p-3 rounded-lg font-medium text-center hover:border-primary hover:text-primary transition-colors">
+                                <div class="text-lg font-semibold">40x60 cm</div>
+                                <div class="text-sm">Μεσαίο</div>
+                            </button>
+                            <button class="border-2 border-gray-300 text-gray-600 p-3 rounded-lg font-medium text-center hover:border-primary hover:text-primary transition-colors">
+                                <div class="text-lg font-semibold">60x80 cm</div>
+                                <div class="text-sm">Μεγάλο</div>
+                            </button>
+                            <button class="border-2 border-gray-300 text-gray-600 p-3 rounded-lg font-medium text-center hover:border-primary hover:text-primary transition-colors">
+                                <div class="text-lg font-semibold">Προσαρμογή</div>
+                                <div class="text-sm">Custom</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Material Selection -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h4 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">3</span>
+                            Υλικό
+                        </h4>
+                        <!-- @STATE: selectedMaterial:string = 'wood' -->
+                        <div class="space-y-3">
+                            <div class="border-2 border-primary bg-primary/10 rounded-lg p-4 cursor-pointer transition-colors" data-selected="true">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-tree text-primary text-xl mr-3"></i>
+                                        <div>
+                                            <div class="font-semibold text-primary">Ξύλο Premium</div>
+                                            <div class="text-sm text-gray-600">Υψηλή ποιότητα, διαρκές</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-primary font-semibold">+€15</div>
+                                </div>
+                            </div>
+                            <div class="border-2 border-gray-300 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-gem text-gray-600 text-xl mr-3"></i>
+                                        <div>
+                                            <div class="font-semibold text-gray-700">Ακρυλικό</div>
+                                            <div class="text-sm text-gray-600">Διαφανές, μοντέρνο</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-gray-600 font-semibold">+€10</div>
+                                </div>
+                            </div>
+                            <div class="border-2 border-gray-300 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-file-alt text-gray-600 text-xl mr-3"></i>
+                                        <div>
+                                            <div class="font-semibold text-gray-700">Χαρτί Υψηλής Ποιότητας</div>
+                                            <div class="text-sm text-gray-600">Κλασικό, οικονομικό</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-gray-600 font-semibold">Βάση</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Piece Count -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h4 class="text-xl font-semibold text-neutral mb-4 flex items-center">
+                            <span class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">4</span>
+                            Αριθμός Κομματιών
+                        </h4>
+                        <!-- @STATE: selectedPieces:number = 500 -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <button class="border-2 border-gray-300 text-gray-600 py-3 rounded-lg font-semibold hover:border-primary hover:text-primary transition-colors">
+                                100
+                            </button>
+                            <button class="border-2 border-gray-300 text-gray-600 py-3 rounded-lg font-semibold hover:border-primary hover:text-primary transition-colors">
+                                300
+                            </button>
+                            <button class="border-2 border-primary bg-primary/10 text-primary py-3 rounded-lg font-semibold" data-selected="true">
+                                500
+                            </button>
+                            <button class="border-2 border-gray-300 text-gray-600 py-3 rounded-lg font-semibold hover:border-primary hover:text-primary transition-colors">
+                                1000
+                            </button>
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Προσαρμογή:</label>
+                            <input type="range" min="100" max="2000" step="50" value="500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-sm text-gray-500 mt-1">
+                                <span>100</span>
+                                <span>2000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Panel -->
+                <div class="lg:sticky lg:top-24">
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
+                        <h4 class="text-xl font-semibold text-neutral mb-6">Προεπισκόπηση Παζλ</h4>
+                        
+                        <!-- @FUNCTIONALITY: Preview should show puzzle with selected configuration -->
+                        <div class="aspect-square bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
+                            <!-- A beautiful landscape puzzle partially completed showing mountain scenery -->
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=600" 
+                                 alt="Puzzle preview of mountain landscape" 
+                                 class="w-full h-full object-cover rounded-lg" 
+                                 data-implementation="Dynamic preview based on uploaded image and configuration" />
+                        </div>
+
+                        <!-- Price Summary -->
+                        <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Βασική τιμή (30x40cm, 500 κομμάτια):</span>
+                                    <span class="font-semibold">€25.00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Ξύλο Premium:</span>
+                                    <span class="font-semibold">€15.00</span>
+                                </div>
+                                <div class="border-t pt-2 flex justify-between text-lg font-bold">
+                                    <span>Σύνολο:</span>
+                                    <span class="text-primary" data-bind="totalPrice">€40.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add to Cart -->
+                        <button class="w-full bg-accent text-white py-4 rounded-lg font-semibold text-lg hover:bg-accent/90 transition-colors mb-4" data-event="click:addToCart">
+                            <i class="fas fa-shopping-cart mr-2"></i>
+                            Προσθήκη στο Καλάθι
+                        </button>
+                        
+                        <div class="text-center text-sm text-gray-500">
+                            <i class="fas fa-truck mr-1"></i>
+                            Δωρεάν μεταφορικά για παραγγελίες άνω των €50
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ProductConfigurator -->
+
+    <!-- @COMPONENT: TemplateGallery [pre-designed puzzle templates] -->
+    <section id="templates" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold text-neutral mb-4">Πρότυπα Παζλ</h3>
+                <p class="text-xl text-gray-600">Επιλέξτε από τη συλλογή μας όμορφων προσχεδιασμένων παζλ</p>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-primary/90 transition-colors">
+                    Όλα
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-300 px-6 py-2 rounded-full font-medium hover:border-primary hover:text-primary transition-colors">
+                    Φύση
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-300 px-6 py-2 rounded-full font-medium hover:border-primary hover:text-primary transition-colors">
+                    Ζώα
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-300 px-6 py-2 rounded-full font-medium hover:border-primary hover:text-primary transition-colors">
+                    Αρχιτεκτονική
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-300 px-6 py-2 rounded-full font-medium hover:border-primary hover:text-primary transition-colors">
+                    Αφηρημένα
+                </button>
+            </div>
+
+            <!-- @MAP: templates.map(template => ( -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Template Card 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                    <!-- A serene mountain lake surrounded by pine trees with perfect reflections -->
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
+                         alt="Mountain lake puzzle template" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-neutral mb-1">Ορεινή Λίμνη</h4>
+                        <p class="text-sm text-gray-600 mb-3">Ήρεμο τοπίο με αντανακλάσεις</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Από €25.00</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors">
+                                Επιλογή
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Card 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                    <!-- A majestic tiger portrait with intense eyes and beautiful striped pattern -->
+                    <img src="https://images.unsplash.com/photo-1551969014-7d2c4cddf0b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
+                         alt="Tiger portrait puzzle template" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-neutral mb-1">Πορτρέτο Τίγρης</h4>
+                        <p class="text-sm text-gray-600 mb-3">Μαγευτικό βλέμμα άγριου ζώου</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Από €25.00</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors">
+                                Επιλογή
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Card 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                    <!-- A stunning European castle on a hilltop surrounded by autumn trees -->
+                    <img src="https://pixabay.com/get/g6d2eb527e9861d10a1d4ef1d7cf505711ef74615fa1257b993d3dabf92fbcdc0ccf5ac9f104de928a175394b652e73428b94b7a3f13ebe327f3339c6615ca347_1280.jpg" 
+                         alt="European castle puzzle template" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-neutral mb-1">Κάστρο Φθινοπώρου</h4>
+                        <p class="text-sm text-gray-600 mb-3">Παραμυθένιο κάστρο σε λόφο</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Από €25.00</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors">
+                                Επιλογή
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Card 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                    <!-- A vibrant abstract geometric pattern with bright colors and shapes -->
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
+                         alt="Abstract geometric puzzle template" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-neutral mb-1">Γεωμετρική Τέχνη</h4>
+                        <p class="text-sm text-gray-600 mb-3">Ζωντανά χρώματα και σχήματα</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Από €25.00</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors">
+                                Επιλογή
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Card 5 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                    <!-- A peaceful zen garden with raked sand patterns and balanced stones -->
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
+                         alt="Zen garden puzzle template" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-neutral mb-1">Κήπος Zen</h4>
+                        <p class="text-sm text-gray-600 mb-3">Ηρεμία και ισορροπία</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Από €25.00</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors">
+                                Επιλογή
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Card 6 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                    <!-- A vintage world map with detailed geographical features and compass rose -->
+                    <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
+                         alt="Vintage world map puzzle template" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-neutral mb-1">Vintage Χάρτης</h4>
+                        <p class="text-sm text-gray-600 mb-3">Παλαιός χάρτης του κόσμου</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Από €25.00</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors">
+                                Επιλογή
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Card 7 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                    <!-- A colorful parrot perched on a tropical branch with lush green foliage -->
+                    <img src="https://pixabay.com/get/g56e9cab9f102a66a8a8a6b8a851b77da58bfeecc619e6f0c7e90d1f9ebaf47ab510f271c153452d1cd80cab94ecf45c30866a02f44db62209688cd2191b46a85_1280.jpg" 
+                         alt="Tropical parrot puzzle template" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-neutral mb-1">Τροπικός Παπαγάλος</h4>
+                        <p class="text-sm text-gray-600 mb-3">Έντονα χρώματα τροπικών</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Από €25.00</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors">
+                                Επιλογή
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template Card 8 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+                    <!-- A dreamy galaxy scene with stars, nebulae and cosmic colors -->
+                    <img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
+                         alt="Galaxy space puzzle template" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-neutral mb-1">Γαλαξίας</h4>
+                        <p class="text-sm text-gray-600 mb-3">Μυστηριώδης διαστημικός χώρος</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">Από €25.00</span>
+                            <button class="bg-primary text-white px-3 py-1 rounded text-sm hover:bg-primary/90 transition-colors">
+                                Επιλογή
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+
+            <div class="text-center mt-12">
+                <button class="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors">
+                    Φόρτωση Περισσότερων
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: TemplateGallery -->
+
+    <!-- @COMPONENT: MaterialsShowcase [display different material options] -->
+    <section id="materials" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold text-neutral mb-4">Επιλέξτε το Υλικό σας</h3>
+                <p class="text-xl text-gray-600">Κάθε υλικό προσφέρει μοναδική εμπειρία και αισθητική</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Wood Material -->
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 border-2 border-primary/20 hover:border-primary/50 transition-colors">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tree text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-neutral mb-2">Ξύλο Premium</h4>
+                        <p class="text-gray-600">Φυσική ομορφιά και διάρκεια</p>
+                    </div>
+                    
+                    <!-- A close-up of beautiful wood grain texture showing natural patterns -->
+                    <img src="https://images.unsplash.com/photo-1544985361-b420d7a77043?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                         alt="Premium wood texture showing natural grain patterns" 
+                         class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg" />
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Υψηλή αντοχή στο χρόνο</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Φυσική υφή και άρωμα</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Πολυτελής εμφάνιση</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span>Οικολογικό υλικό</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-primary/20">
+                        <div class="text-center">
+                            <span class="text-2xl font-bold text-primary">+€15.00</span>
+                            <p class="text-sm text-gray-600">επιπλέον κόστος</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acrylic Material -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-gray-200 hover:border-secondary/50 transition-colors">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-gem text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-neutral mb-2">Ακρυλικό</h4>
+                        <p class="text-gray-600">Μοντέρνο και κομψό</p>
+                    </div>
+                    
+                    <!-- A sleek transparent acrylic surface with light reflections and modern aesthetic -->
+                    <img src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                         alt="Transparent acrylic material with modern light reflections" 
+                         class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg" />
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-secondary mr-3"></i>
+                            <span>Διαφανής και λαμπερό</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-secondary mr-3"></i>
+                            <span>Εύκολος καθαρισμός</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-secondary mr-3"></i>
+                            <span>Μοντέρνα αισθητική</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-secondary mr-3"></i>
+                            <span>Ανθεκτικό στην υγρασία</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-secondary/20">
+                        <div class="text-center">
+                            <span class="text-2xl font-bold text-secondary">+€10.00</span>
+                            <p class="text-sm text-gray-600">επιπλέον κόστος</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paper Material -->
+                <div class="bg-gradient-to-br from-gray-50 to-slate-50 rounded-2xl p-8 border-2 border-gray-200 hover:border-neutral/50 transition-colors">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-neutral rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-file-alt text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-neutral mb-2">Χαρτί Υψηλής Ποιότητας</h4>
+                        <p class="text-gray-600">Κλασικό και οικονομικό</p>
+                    </div>
+                    
+                    <!-- High-quality textured paper with smooth surface and professional finish -->
+                    <img src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                         alt="High-quality paper texture with smooth professional finish" 
+                         class="w-full h-48 object-cover rounded-xl mb-6 shadow-lg" />
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-neutral mr-3"></i>
+                            <span>Κλασική εμφάνιση</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-neutral mr-3"></i>
+                            <span>Οικονομική επιλογή</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-neutral mr-3"></i>
+                            <span>Ματ φινίρισμα</span>
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-check text-neutral mr-3"></i>
+                            <span>Ιδανικό για αρχάριους</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-neutral/20">
+                        <div class="text-center">
+                            <span class="text-2xl font-bold text-neutral">€25.00</span>
+                            <p class="text-sm text-gray-600">βασική τιμή</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: MaterialsShowcase -->
+
+    <!-- @COMPONENT: HowItWorks [process explanation] -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold text-neutral mb-4">Πώς Λειτουργεί</h3>
+                <p class="text-xl text-gray-600">Απλά βήματα για το τέλειο προσωποποιημένο παζλ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-upload text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-neutral mb-3">1. Ανεβάστε Εικόνα</h4>
+                    <p class="text-gray-600">Ανεβάστε την αγαπημένη σας φωτογραφία ή επιλέξτε από τα πρότυπά μας</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-cog text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-neutral mb-3">2. Προσαρμόστε</h4>
+                    <p class="text-gray-600">Επιλέξτε μέγεθος, υλικό και αριθμό κομματιών που ταιριάζει σε εσάς</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-credit-card text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-neutral mb-3">3. Παραγγείλετε</h4>
+                    <p class="text-gray-600">Ολοκληρώστε την παραγγελία σας με ασφαλή τρόπο πληρωμής</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shipping-fast text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-neutral mb-3">4. Παραλάβετε</h4>
+                    <p class="text-gray-600">Λάβετε το παζλ σας σε 5-7 εργάσιμες ημέρες με ασφαλή συσκευασία</p>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white rounded-2xl p-8 shadow-lg">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-2xl font-bold text-neutral mb-4">Γιατί να Επιλέξετε το PuzzleCraft;</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-star text-primary text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h5 class="font-semibold text-neutral mb-1">Υψηλή Ποιότητα</h5>
+                                    <p class="text-gray-600">Χρησιμοποιούμε τα καλύτερα υλικά και τεχνολογία εκτύπωσης</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-heart text-primary text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h5 class="font-semibold text-neutral mb-1">Προσωποποίηση</h5>
+                                    <p class="text-gray-600">Κάθε παζλ είναι μοναδικό και φτιαγμένο ειδικά για εσάς</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-truck text-primary text-xl mr-4 mt-1"></i>
+                                <div>
+                                    <h5 class="font-semibold text-neutral mb-1">Γρήγορη Παράδοση</h5>
+                                    <p class="text-gray-600">Δωρεάν μεταφορικά και γρήγορη παράδοση σε όλη την Ελλάδα</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!-- A happy family completing a custom puzzle together on a living room table -->
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" 
+                             alt="Happy family completing a custom puzzle together" 
+                             class="w-full h-80 object-cover rounded-xl shadow-lg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HowItWorks -->
+
+    <!-- @COMPONENT: ShoppingCart [cart sidebar] -->
+    <div id="cartSidebar" class="fixed inset-y-0 right-0 w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50" data-implementation="Cart component with state management">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-6 border-b">
+                <h3 class="text-xl font-semibold text-neutral">Καλάθι Αγορών</h3>
+                <button class="text-gray-500 hover:text-gray-700" data-event="click:closeCart">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-6">
+                <!-- @MAP: cartItems.map(item => ( -->
+                <!-- Cart Item 1 -->
+                <div class="flex items-center space-x-4 mb-6 pb-6 border-b">
+                    <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100" 
+                         alt="Custom puzzle preview" 
+                         class="w-16 h-16 object-cover rounded-lg" />
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-neutral">Προσωποποιημένο Παζλ</h4>
+                        <p class="text-sm text-gray-600">30x40cm, Ξύλο, 500 κομμάτια</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <div class="flex items-center space-x-2">
+                                <button class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-sm">-</button>
+                                <span class="font-semibold">1</span>
+                                <button class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-sm">+</button>
+                            </div>
+                            <span class="font-semibold text-primary">€40.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Item 2 -->
+                <div class="flex items-center space-x-4 mb-6 pb-6 border-b">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100" 
+                         alt="Mountain lake puzzle template" 
+                         class="w-16 h-16 object-cover rounded-lg" />
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-neutral">Ορεινή Λίμνη</h4>
+                        <p class="text-sm text-gray-600">40x60cm, Χαρτί, 300 κομμάτια</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <div class="flex items-center space-x-2">
+                                <button class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-sm">-</button>
+                                <span class="font-semibold">2</span>
+                                <button class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-sm">+</button>
+                            </div>
+                            <span class="font-semibold text-primary">€50.00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+
+            <div class="border-t p-6">
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Υποσύνολο:</span>
+                        <span class="font-semibold">€90.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Μεταφορικά:</span>
+                        <span class="font-semibold text-secondary">Δωρεάν</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-bold border-t pt-3">
+                        <span>Σύνολο:</span>
+                        <span class="text-primary">€90.00</span>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-accent text-white py-3 rounded-lg font-semibold text-lg hover:bg-accent/90 transition-colors mb-3">
+                    Ολοκλήρωση Παραγγελίας
+                </button>
+                <button class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors">
+                    Συνέχεια Αγορών
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cartOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <!-- @END_COMPONENT: ShoppingCart -->
+
+    <!-- @COMPONENT: Footer [contact info, links, social] -->
+    <footer class="bg-neutral text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-2xl font-bold text-primary mb-4">PuzzleCraft</h3>
+                    <p class="text-gray-300 mb-4">
+                        Δημιουργούμε προσωποποιημένα παζλ υψηλής ποιότητας που φέρνουν χαρά και δημιουργικότητα στη ζωή σας.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Γρήγοροι Σύνδεσμοι</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Αρχική</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Δημιουργία Παζλ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Πρότυπα</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Υλικά</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Σχετικά με εμάς</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Εξυπηρέτηση Πελατών</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Συχνές Ερωτήσεις</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Παρακολούθηση Παραγγελίας</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Επιστροφές</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Επικοινωνία</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition-colors">Οδηγίες Φροντίδας</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Επικοινωνία</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-map-marker-alt mr-3"></i>
+                            <span>Αθήνα, Ελλάδα</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-phone mr-3"></i>
+                            <span>+30 210 123 4567</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>info@puzzlecraft.gr</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-clock mr-3"></i>
+                            <span>Δευ-Παρ: 9:00-18:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 mt-12 pt-8 text-center">
+                <p class="text-gray-300">
+                    © 2024 PuzzleCraft. Όλα τα δικαιώματα διατηρούνται. | 
+                    <a href="#" class="hover:text-primary transition-colors">Πολιτική Απορρήτου</a> | 
+                    <a href="#" class="hover:text-primary transition-colors">Όροι Χρήσης</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // TODO: Implement business logic, API calls, or state management
+        (function() {
+            // Basic UI interactions - no business logic
+            let cartOpen = false;
+            let mobileMenuOpen = false;
+
+            // Cart toggle functionality
+            const cartButton = document.querySelector('[data-event="click:toggleCart"]');
+            const cartSidebar = document.getElementById('cartSidebar');
+            const cartOverlay = document.getElementById('cartOverlay');
+            const closeCartButton = document.querySelector('[data-event="click:closeCart"]');
+
+            function toggleCart() {
+                cartOpen = !cartOpen;
+                if (cartOpen) {
+                    cartSidebar.classList.remove('translate-x-full');
+                    cartOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                } else {
+                    cartSidebar.classList.add('translate-x-full');
+                    cartOverlay.classList.add('opacity-0', 'pointer-events-none');
+                }
+            }
+
+            if (cartButton) cartButton.addEventListener('click', toggleCart);
+            if (closeCartButton) closeCartButton.addEventListener('click', toggleCart);
+            if (cartOverlay) cartOverlay.addEventListener('click', toggleCart);
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Configuration interactions
+            document.querySelectorAll('[data-selected]').forEach(element => {
+                element.addEventListener('click', function() {
+                    // Remove selected state from siblings
+                    const siblings = this.parentElement.querySelectorAll('[data-selected], .border-primary');
+                    siblings.forEach(sibling => {
+                        sibling.removeAttribute('data-selected');
+                        sibling.classList.remove('border-primary', 'bg-primary/10', 'text-primary');
+                        sibling.classList.add('border-gray-300', 'text-gray-600');
+                    });
+                    
+                    // Add selected state to clicked element
+                    this.setAttribute('data-selected', 'true');
+                    this.classList.add('border-primary', 'bg-primary/10', 'text-primary');
+                    this.classList.remove('border-gray-300', 'text-gray-600');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

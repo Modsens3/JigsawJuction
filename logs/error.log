@@ -1,0 +1,28 @@
+[2025-08-16T09:54:17.129Z] [ERROR] Database health check failed | Error: {}
+[2025-08-16T09:59:59.036Z] [ERROR] Database health check failed | Error: {}
+[2025-08-16T10:37:42.733Z] [ERROR] Database health check failed | Error: {}
+[2025-08-16T10:54:08.002Z] [ERROR] Database health check failed | Error: {}
+[2025-08-18T06:50:56.362Z] [ERROR] Critical memory usage: 96.6% (168MB / 174MB)
+[2025-08-18T06:53:20.525Z] [ERROR] Failed to create order | User: AE7C9CA5AA033A9C0912404EEBC93D44 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T06:57:20.121Z] [ERROR] Critical memory usage: 97.6% (166MB / 170MB)
+[2025-08-18T06:59:37.171Z] [ERROR] Failed to create order | User: AE7C9CA5AA033A9C0912404EEBC93D44 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:00:23.143Z] [ERROR] Failed to create order | User: AE7C9CA5AA033A9C0912404EEBC93D44 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:02:20.117Z] [ERROR] Critical memory usage: 96.9% (157MB / 162MB)
+[2025-08-18T07:03:15.719Z] [ERROR] Failed to create order | User: AE7C9CA5AA033A9C0912404EEBC93D44 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:12:28.612Z] [ERROR] Failed to create order | User: AE7C9CA5AA033A9C0912404EEBC93D44 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:18:34.771Z] [ERROR] Failed to create order | User: AE7C9CA5AA033A9C0912404EEBC93D44 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:19:08.973Z] [ERROR] Failed to create order | User: AE7C9CA5AA033A9C0912404EEBC93D44 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:25:38.088Z] [ERROR] Failed to get user orders | User: 0861A59592DD6D950F582DDAF9664395 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:25:40.134Z] [ERROR] Failed to get user orders | User: 0861A59592DD6D950F582DDAF9664395 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:25:41.565Z] [ERROR] Failed to get user orders | User: 0861A59592DD6D950F582DDAF9664395 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:27:38.971Z] [ERROR] Failed to upload base64 file | Error: {"message":"Input buffer contains unsupported image format"}
+[2025-08-18T07:27:38.972Z] [ERROR] Failed to save base64 image to Google Drive | Error: {"message":"Input buffer contains unsupported image format"}
+[2025-08-18T07:27:38.972Z] [ERROR] Failed to save base64 image | Error: {"message":"Input buffer contains unsupported image format"}
+[2025-08-18T07:27:39.000Z] [ERROR] Failed to create order | User: 0861A59592DD6D950F582DDAF9664395 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:27:43.401Z] [ERROR] Failed to upload base64 file | Error: {"message":"Input buffer contains unsupported image format"}
+[2025-08-18T07:27:43.401Z] [ERROR] Failed to save base64 image to Google Drive | Error: {"message":"Input buffer contains unsupported image format"}
+[2025-08-18T07:27:43.401Z] [ERROR] Failed to save base64 image | Error: {"message":"Input buffer contains unsupported image format"}
+[2025-08-18T07:27:43.403Z] [ERROR] Failed to create order | User: 0861A59592DD6D950F582DDAF9664395 | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T07:28:40.503Z] [ERROR] Critical memory usage: 98.8% (162MB / 164MB)
+[2025-08-18T07:47:57.141Z] [ERROR] Critical memory usage: 95.0% (115MB / 121MB)
+[2025-08-18T07:58:36.571Z] [ERROR] Critical memory usage: 91.9% (170MB / 185MB)

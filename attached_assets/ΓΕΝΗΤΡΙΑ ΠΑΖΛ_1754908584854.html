@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+   <meta charset="UTF-8">
+   <title>KAPA_gennhtria_puzzle</title>
+   <script type="text/javascript" src="flatten.js"></script>
+   <script type="text/javascript">
+
+      var seed = 1;
+      var ncols, nrows, rad, frame, framecorner, minp, maxp, coloring_seed = 1;
+      var arc_shape = 0;
+      var jig;
+      var customborder = {};
+      function random() {
+         if ($("ndr").checked) {
+            return Math.random();
+         } else {
+            var x = Math.sin(seed) * 10000; seed += 1; return x - Math.floor(x);
+         }
+      }
+      function uniform(min, max) { var r = random(); return min + r * (max - min); }
+      function rbool() { return random() > 0.5; }
+
+      function $(id) { return document.getElementById(id); }
+
+      function updateseed() { $("_seed").value = $("seed").value; update(); }
+      function updatencols() { $("_ncols").value = $("ncols").value; update(); }
+      function updatenrows() { $("_nrows").value = $("nrows").value; update(); }
+      function update_seed() { var val = parseInt($("_seed").value); if (!isNaN(val)) { $("seed").value = val; } updateseed(); }
+      function update_ncols() { var val = parseInt($("_ncols").value); if (!isNaN(val)) { $("ncols").value = val; } updatencols(); }
+      function update_nrows() { var val = parseInt($("_nrows").value); if (!isNaN(val)) { $("nrows").value = val; } updatenrows(); }
+
+
+      function plotpath(path, scale) {
+         var len = path.getTotalLength();
+         var ancestor = path.ownerSVGElement;
+         let cp = [];
+         let uinc = 0.0078125;
+         for (let u = 0; u <= 1; u += uinc) {
+            let p = path.getPointAtLength(u * len);
+            p.rx = p.x;
+            p.ry = p.y;
+            p.x = Math.round(p.x / scale);
+            p.y = Math.round(p.y / scale);
+            if (cp.length && (Math.abs(cp[cp.length - 1].x - p.x) > 1 || Math.abs(cp[cp.length - 1].y - p.y) > 1)) {
+               //Lacking raster resolution
+               u -= uinc;
+               uinc = uinc / 2;
+               console.log("uinc "+uinc);
+               if(uinc < 0.0000152587890625){
+                  uinc = 0.0078125;
+                  cp.push(p);
+               }
+            } else {
+               cp.push(p);
+            }
+
+         }
+         return cp;
+      }
+
+      class Tile {
+         constructor(x, y) {
+            this._x = x;
+            this._y = y;
+            this.haspossibleconnections = true;
+         }
+         get hasconnections() {
+            return this.haspossibleconnections;
+         }
+         set hasconnections(val) {
+            this.haspossibleconnections = val;
+         }
+         get x() {
+            return this._x;
+         }
+         get y() {
+            return this._y;
+         }
+         eq(p) {
+            return (this.x == p.x && this.y == p.y);
+         }
+      }
+
+      class Cell {
+         constructor(x, y) {
+            this._x = x;
+            this._y = y;
+         }
+         get x() {
+            return this._x;
+         }
+         get y() {
+            return this._y;
+         }
+         eq(c) {
+            return (this.x == c.x && this.y == c.y);
+         }
+      }
+
+      class DiagonalConnection {
+         constructor(p1, p2, p2_taken) {
+            this._p1 = p1;
+            this._p2 = p2;
+            this._p2_taken = p2_taken;
+            this._slope = (p2.y - p1.y) / (p2.x - p1.x);
+            var ccx = Math.min(p2.x, p1.x);
+            var ccy = Math.min(p2.y, p1.y);
+            this._cell = new Cell(ccx, ccy);
+            if (this._slope > 0) {
+               if (p2.y > p1.y) {
+                  this._quad = 3;
+               } else {
+                  this._quad = 1;
+               }
+            } else {
+               if (p2.y > p1.y) {
+                  this._quad = 2;
+               } else {
+                  this._quad = 0;
+               }
+            }
+         }
+         eq(other) {
+            return (this === other) || (this.cell.x == other.cell.x && this.cell.y == other.cell.y && this.slope == other.slope && this.p2_taken == other.p2_taken)
+         }
+         get slope() {
+            return this._slope;
+         }
+         get quad() {
+            return this._quad;
+         }
+         get p1() {
+            return this._p1;
+         }
+         get p2() {
+            return this._p2;
+         }
+         get cell() {
+            return this._cell;
+         }
+
+         get p2_taken() {
+            return this._p2_taken
+         }
+         static FromPointAndQuad(p1, quadrant, p2_taken) {
+            var p2;
+            switch (quadrant) {
+               case 0:
+                  p2 = new Tile(p1.x + 1, p1.y - 1);
+                  break;
+               case 1:
+                  p2 = new Tile(p1.x - 1, p1.y - 1);
+                  break;
+               case 2:
+                  p2 = new Tile(p1.x - 1, p1.y + 1);
+                  break;
+               case 3:
+                  p2 = new Tile(p1.x + 1, p1.y + 1);
+                  break;
+            }
+            return new DiagonalConnection(p1, p2, p2_taken);
+         }
+      }
+
+
+      class CellGrid {
+         constructor(nrow, ncol) {
+            this.nrow = nrow;
+            this.ncol = ncol;
+            this.visited = new Array(this.ncol * this.nrow).fill(false);
+            this.cellmap = new Array((this.ncol - 1) * (this.nrow - 1)).fill(false);
+            this._nunvisited = this.ncol * this.nrow;
+         }
+
+         randomemptytile() {
+            var emptytiles = this.visited.reduce(function (acc, curr, index) {
+               if (!curr) {
+                  acc.push(index);
+               }
+               return acc;
+            }, []);
+
+            var index = emptytiles[Math.floor(uniform(0, emptytiles.length))];
+            var y = Math.floor(index / this.nrow);
+            var x = index % this.nrow;
+            return new Tile(x, y);
+         }
+
+         reset() {
+            this.visited.fill(false);
+            this.cellmap.fill(false);
+            this._nunvisited = this.ncol * this.nrow;
+         }
+         istilevalid(v) {
+            return (v.x >= 0 && v.x < this.nrow && v.y >= 0 && v.y < this.ncol);
+         }
+
+         istilevisited(v) {
+            return this.visited[v.y * this.nrow + v.x];
+         }
+         iscellempty(c) {
+            return !this.cellmap[c.y * this.nrow + c.x];
+         }
+         visittile(v) {
+            if (!this.visited[v.y * this.nrow + v.x]) {
+               this.visited[v.y * this.nrow + v.x] = true;
+               this._nunvisited--;
+            }
+         }
+         occupycell(c) {
+            if (!this.cellmap[c.y * this.nrow + c.x]) {
+               this.cellmap[c.y * this.nrow + c.x] = true;
+            }
+         }
+         liberatecell(c) {
+            this.cellmap[c.y * this.nrow + c.x] = false;
+         }
+
+         get nunvisited() {
+            return this._nunvisited;
+         }
+
+         get notvisited() {
+            return this._notvisited;
+         }
+
+      }
+
+      class Arc {
+         constructor(gcp, rad, offs, quad, sign) {
+            this._cp = new Tile(gcp.x * 2 * rad + rad + offs, gcp.y * 2 * rad + rad + offs);
+            this._quad = quad;
+            this._rad = rad;
+            this._sign = sign
+            var pa;
+            var pb;
+            switch (quad) {
+               case 0:
+                  pa = new Tile(this._cp.x + rad, this._cp.y);
+                  pb = new Tile(this._cp.x, this._cp.y - rad);
+                  break;
+               case 1:
+                  pa = new Tile(this._cp.x, this._cp.y - rad);
+                  pb = new Tile(this._cp.x - rad, this._cp.y);
+                  break;
+               case 2:
+                  pa = new Tile(this._cp.x - rad, this._cp.y);
+                  pb = new Tile(this._cp.x, this._cp.y + rad);
+                  break;
+               case 3:
+                  pa = new Tile(this._cp.x, this._cp.y + rad);
+                  pb = new Tile(this._cp.x + rad, this._cp.y);
+                  break;
+            }
+            if (this.sign == 0) {
+               this._sp = pa;
+               this._ep = pb;
+            } else {
+               this._sp = pb;
+               this._ep = pa;
+            }
+         }
+         svg(arcshape) {
+            const tan225 = 0.4142135623730950488016887242097;
+            var hlen = this._rad * tan225;
+            switch (arcshape) {
+               case 0: //circle arc
+                  return "A " + this._rad + " " + this._rad + " 0 0," + this.sign + " " + this.ep.x + " " + this.ep.y + " ";
+                  break;
+               case 1: //square
+                  return "L " + this.ep.x + " " + this.ep.y + " ";
+                  break;
+               case 2: //octagon
+                  var quad = this._quad;
+                  var sp = this.sp;
+                  var ep = this.ep;
+                  if (this._sign == 1) {
+                     sp = this.ep;
+                     ep = this.sp;
+                  }
+                  switch (quad) {
+                     case 0:
+                        var mp1 = [sp.x, sp.y - hlen];
+                        var mp2 = [ep.x + hlen, ep.y];
+                        break;
+                     case 1:
+                        var mp1 = [sp.x - hlen, sp.y];
+                        var mp2 = [ep.x, ep.y - hlen];
+                        break;
+                     case 2:
+                        var mp1 = [sp.x, sp.y + hlen];
+                        var mp2 = [ep.x - hlen, ep.y];
+                        break;
+                     case 3:
+                        var mp1 = [sp.x + hlen, sp.y];
+                        var mp2 = [ep.x, ep.y + hlen];
+                        break;
+                  }
+                  if (this._sign == 1) {
+                     return "L " + mp2[0] + " " + mp2[1] + " L " + mp1[0] + " " + mp1[1] + " L " + this.ep.x + " " + this.ep.y + " ";
+                  } else {
+                     return "L " + mp1[0] + " " + mp1[1] + " L " + mp2[0] + " " + mp2[1] + " L " + this.ep.x + " " + this.ep.y + " ";
+                  }
+                  break;
+            }
+         }
+         eq(a) {
+            return (this.quad == a.quad && this.cp.eq(a.cp));
+         }
+         get cp() {
+            return this._cp;
+         }
+         get sign() {
+            return this._sign;
+         }
+         get sp() {
+            return this._sp;
+         }
+         get ep() {
+            return this._ep;
+         }
+         get quad() {
+            return this._quad;
+         }
+      }
+      class CircleFractalJigsaw {
+         constructor(ncols, nrows, minpiecelen, maxpiecelen, border, crad) {
+            let Array2D = (row, col) => [...Array(row)].map(x => Array(col).fill(0));
+
+            if (border.paths) {
+               ncols = Math.ceil(border.width / (2 * crad)) + 1;
+               nrows = Math.ceil(border.height / (2 * crad)) + 1;
+            }
+            this.ncols = ncols;
+            this.nrows = nrows;
+            this.maskgrid = Array2D(nrows, ncols);
+            this.grid = new CellGrid(ncols, nrows)
+            if (border.paths) {
+               this.fillmask(border.paths, crad, parseFloat($("frame").value));
+               for (var i = 0; i < nrows; i++) {
+                  for (var j = 0; j < ncols; j++) {
+                     if (this.maskgrid[i][j]) {
+                        this.grid.visittile({ x: j, y: i });
+                     }
+                  }
+               }
+            }
+            this.pieces = [];
+            this.maxpiecelen = maxpiecelen;
+            this.minpiecelen = minpiecelen;
+
+         }
+
+         fillmask(paths, crad, frame) {
+            const crosslookup = [[-1, 0], [1, 0], [0, 1], [0, -1]];
+            var dia = 2 * crad;
+            var allpts = []
+            var minx, miny, maxx, maxy
+            for (let p of paths) {
+               var pts = plotpath(p, dia);
+               pts.forEach((pt) => {
+                  allpts.push(pt);
+                  if (isNaN(minx) || pt.x < minx) minx = pt.x;
+                  if (isNaN(miny) || pt.y < miny) miny = pt.y;
+                  if (isNaN(maxx) || pt.x > maxx) maxx = pt.x;
+                  if (isNaN(maxy) || pt.y > maxy) maxy = pt.y;
+               });
+
+            }
+            // console.log("V", minx, maxx, miny, maxy);
+            allpts.forEach((p) => {
+
+               this.maskgrid[p.y][p.x] = 1;
+
+            });
+
+            var regnum = 3;
+
+            var grown;
+            do {
+               var outside = true;
+               grown = false;
+               for (var i = -1; i < this.nrows + 1; i++) {
+                  for (var j = -1; j < this.ncols + 1; j++) {
+                     if (i < 0 || j < 0 || i > this.nrows - 1 || j > this.ncols - 1 || (this.maskgrid[i][j] > 1 && this.maskgrid[i][j] < regnum)) {
+                        var togrow = [{ r: i, c: j }];
+                        do {
+                           var p = togrow.pop();
+                           crosslookup.forEach((c) => {
+                              var ii = p.r + c[0];
+                              var jj = p.c + c[1];
+                              if (ii >= 0 && jj >= 0 && ii < this.nrows && jj < this.ncols) {
+
+                                 if (!this.maskgrid[ii][jj]) {
+                                    togrow.push({ r: ii, c: jj });
+                                 }
+                                 if (this.maskgrid[ii][jj] < 2) {
+                                    if (p.r > 0 && p.c > 0 && p.r < this.nrows && p.c < this.ncols) {
+                                       if (this.maskgrid[p.r][p.c] > 1 && this.maskgrid[p.r][p.c] < regnum && this.maskgrid[p.r][p.c] % 2) {
+                                          this.outside = false;
+                                       }
+                                    } else {
+                                       this.outside = true;
+                                    }
+                                    this.maskgrid[ii][jj] = regnum;
+                                    grown = true;
+                                 }
+                              }
+                           });
+                        } while (togrow.length);
+
+                     }
+                  }
+
+               }
+               regnum += outside ? 1 : 2;
+            } while (grown)
+
+            for (var i = 0; i < this.nrows; i++) {
+               for (var j = 0; j < this.ncols; j++) {
+                  this.maskgrid[i][j] = this.maskgrid[i][j] % 2;
+               }
+            }
+            allpts.forEach((p) => {
+               this.maskgrid[p.y][p.x] = 1;
+               var bordered = false;
+               var extent = 1;
+               while (!bordered) {
+                  bordered = true;
+                  for (var i = -extent; i < extent + 1; i++) {
+                     for (var j = -extent; j < extent + 1; j++) {
+                        if (Math.abs(i) == extent || Math.abs(j) == extent) {
+                           var cx = p.x + i;
+                           var cy = p.y + j;
+                           if (cx > 0 && cy > 0 && cx < this.ncols && cy < this.nrows) {
+                              // console.log(extent);
+                              //console.log(Math.hypot(cx * 2 * crad - p.rx, cy * 2 * crad - p.ry));
+                              // console.log(crad + frame);
+                              if (Math.hypot(cx * 2 * crad - p.rx, cy * 2 * crad - p.ry) < crad + frame) {
+                                 this.maskgrid[cy][cx] = 1;
+                                 bordered = false;
+                              }
+                           }
+                        }
+
+                     }
+                  }
+                  extent++;
+               }
+               // console.log("bordered");
+            });
+         }
+
+         possibleconnections(mytiles, allowpartials) {
+            var pcs = [];
+            var neighbors = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
+            mytiles.forEach((v) => {
+               if (v.hasconnections || allowpartials) {
+                  v.hasconnections = false;
+                  neighbors.forEach((n) => {
+                     let cpt = new Tile(v.x + n[0], v.y + n[1]);
+                     if (this.grid.istilevalid(cpt) && !this.maskgrid[cpt.y][cpt.x] && !mytiles.find(nv => nv.eq(cpt))) {
+                        let dc = new DiagonalConnection(v, cpt, !this.grid.istilevisited(cpt));
+                        if (this.grid.iscellempty(dc.cell)) {
+                           if (allowpartials || !this.grid.istilevisited(cpt)) {
+                              pcs.push(dc);
+                              v.hasconnections = true;
+                           }
+                        }
+                     }
+                  });
+               }
+            });
+            return pcs;
+         }
+         createpiece() {
+            var mytiles = new Array();
+            var myconnections = new Array();
+            var targetpiecelen = Math.round(uniform(this.minpiecelen, this.maxpiecelen));
+            var vi = this.grid.randomemptytile();
+            mytiles.push(vi);
+            this.grid.visittile(vi);
+
+
+            while (this.grid.nunvisited > 0 && mytiles.length < targetpiecelen) {
+               var possibleconnections = this.possibleconnections(mytiles, false);
+               if (possibleconnections.length == 0) {
+                  break;
+               }
+               var chosenconnection = possibleconnections[Math.floor(uniform(0, possibleconnections.length))];
+               myconnections.push(chosenconnection);
+               mytiles.push(chosenconnection.p2);
+               this.grid.occupycell(chosenconnection.cell);
+               this.grid.visittile(chosenconnection.p2);
+
+
+            }
+
+            if (mytiles.length >= this.minpiecelen) {
+               this.pieces.push(myconnections);
+            } else {
+               myconnections.forEach((c) => {
+                  this.grid.liberatecell(c.cell);
+               })
+            }
+         }
+
+         fillholes(allowpartials) {
+            var filled = false;
+            this.pieces = this.pieces.sort((a, b) => a.length - b.length);
+            this.pieces.forEach((p) => {
+               var tiles = [p[0].p1];
+               p.forEach((con) => {
+                  tiles.push(con.p2);
+               });
+               tiles.forEach((v) => {
+                  var possibleconnections = this.possibleconnections([v], allowpartials);
+                  if (possibleconnections.length) {
+                     possibleconnections = possibleconnections.filter(function (ele) {
+                        return !Boolean(tiles.find(vf => vf.eq(ele.p2)));
+                     });
+                     possibleconnections.forEach((pc) => {
+                        p.push(pc);
+                        tiles.push(pc.p2);
+                        filled = true;
+                        this.grid.occupycell(pc.cell);
+                        this.grid.visittile(pc.p2);
+                     });
+                  }
+               });
+
+            });
+            return filled;
+         }
+
+
+         static addarcs(con, connections, arcs, rad, frame, first) {
+            var newarc;
+            switch (con.quad) {
+               case 0:
+                  newarc = new Arc(new Tile(con.p1.x + 1, con.p1.y), rad, frame, 1, 1);
+                  break;
+               case 1:
+                  newarc = new Arc(new Tile(con.p1.x, con.p1.y - 1), rad, frame, 2, 1);
+                  break;
+               case 2:
+                  newarc = new Arc(new Tile(con.p1.x - 1, con.p1.y), rad, frame, 3, 1);
+                  break;
+               case 3:
+                  newarc = new Arc(new Tile(con.p1.x, con.p1.y + 1), rad, frame, 0, 1);
+                  break;
+            }
+            arcs.push(newarc);
+            if (con.p2_taken) {
+               var p2quads = [(con.quad + 3) % 4, (con.quad + 4) % 4, (con.quad + 5) % 4];
+               p2quads.forEach((q) => {
+                  var pct = DiagonalConnection.FromPointAndQuad(con.p2, q, true);
+                  var pcnt = DiagonalConnection.FromPointAndQuad(con.p2, q, false);
+                  if (connections.find(c => c.eq(pct))) {
+                     CircleFractalJigsaw.addarcs(pct, connections, arcs, rad, frame, false);
+                  } else if (connections.find(c => c.eq(pcnt))) {
+                     CircleFractalJigsaw.addarcs(pcnt, connections, arcs, rad, frame, false);
+                  } else {
+                     arcs.push(new Arc(con.p2, rad, frame, q, 0));
+                  }
+               });
+            } else {
+               arcs.push(new Arc(con.p2, rad, frame, (con.quad + 2) % 4, 1));
+            }
+
+            switch (con.quad) {
+
+               case 0:
+                  newarc = new Arc(new Tile(con.p1.x, con.p1.y - 1), rad, frame, 3, 1);
+                  break;
+               case 1:
+                  newarc = new Arc(new Tile(con.p1.x - 1, con.p1.y), rad, frame, 0, 1);
+                  break;
+               case 2:
+                  newarc = new Arc(new Tile(con.p1.x, con.p1.y + 1), rad, frame, 1, 1);
+                  break;
+               case 3:
+                  newarc = new Arc(new Tile(con.p1.x + 1, con.p1.y), rad, frame, 2, 1);
+                  break;
+            }
+            arcs.push(newarc);
+
+            if (first) {
+               var p1quads = [(con.quad + 1) % 4, (con.quad + 2) % 4, (con.quad + 3) % 4];
+               p1quads.forEach((q) => {
+                  var pct = DiagonalConnection.FromPointAndQuad(con.p1, q, true);
+                  var pcnt = DiagonalConnection.FromPointAndQuad(con.p1, q, false);
+                  if (connections.find(c => c.eq(pct))) {
+                     CircleFractalJigsaw.addarcs(pct, connections, arcs, rad, frame, false);
+                  } else if (connections.find(c => c.eq(pcnt))) {
+                     CircleFractalJigsaw.addarcs(pcnt, connections, arcs, rad, frame, false);
+                  } else {
+                     arcs.push(new Arc(con.p1, rad, frame, q, 0));
+                  }
+               });
+            }
+
+         }
+
+         exportsvg(frame, crad, arcshape) {
+            var width = this.ncols * 2 * crad + 2 * frame;
+            var height = this.nrows * 2 * crad + 2 * frame;
+
+            var data = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><svg baseProfile=\"full\" height=\"" + height + "mm\" version=\"1.1\" viewBox=\"0 0 " + width + " " + height + "\" width=\"" + width + "mm\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs />"
+
+            this.pieces.forEach((p) => {
+               var arcs = [];
+               CircleFractalJigsaw.addarcs(p[0], p, arcs, crad, frame, true);
+               data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"M" + arcs[0].sp.x + "," + arcs[0].sp.y + " ";
+               arcs.forEach((a) => {
+                  data += a.svg(arcshape);
+               });
+               data += "Z\"></path>";
+            });
+            if (customborder.paths) {
+               for (let p of customborder.paths) {
+                  data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"";
+                  data += p.getAttribute("d");
+                  data += "\"></path>";
+               }
+            } else {
+               data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"" + createframe() + "\"></path>";
+            }
+            data += "</svg>";
+            return data;
+         }
+         exportsvg_nooverlap_singlepath(frame, crad, arcshape) {
+            var width = this.ncols * 2 * crad + 2 * frame;
+            var height = this.nrows * 2 * crad + 2 * frame;
+            var data = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><svg baseProfile=\"full\" height=\"" + height + "mm\" version=\"1.1\" viewBox=\"0 0 " + width + " " + height + "\" width=\"" + width + "mm\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs />"
+            var allarcs = [];
+            data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"";
+            var currentlocation = new Tile(-1, -1);
+            this.pieces.forEach((p) => {
+               var arcs = [];
+               CircleFractalJigsaw.addarcs(p[0], p, arcs, crad, frame, true);
+               arcs.forEach((a) => {
+                  if (!allarcs.find(na => na.eq(a))) {
+                     allarcs.push(a);
+                     if (!a.sp.eq(currentlocation)) {
+                        data += "M" + a.sp.x + "," + a.sp.y + " "
+                     }
+                     data += a.svg(arcshape);
+                     currentlocation = a.ep;
+                  }
+               });
+            });
+            data += "\"></path>"
+            if (customborder.paths) {
+               for (let p of customborder.paths) {
+                  data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"";
+                  data += p.getAttribute("d");
+                  data += "\"></path>";
+               }
+            } else {
+               data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"" + createframe() + "\"></path>";
+            }
+            data += "</svg>";
+            return data;
+         }
+
+         exportsvg_nooverlap(frame, crad, arcshape) {
+            var width = this.ncols * 2 * crad + 2 * frame;
+            var height = this.nrows * 2 * crad + 2 * frame;
+            var data = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><svg baseProfile=\"full\" height=\"" + height + "mm\" version=\"1.1\" viewBox=\"0 0 " + width + " " + height + "\" width=\"" + width + "mm\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs />"
+            var allarcs = [];
+            var path = "";
+            this.pieces.forEach((p) => {
+               var inpath = false;
+               var arcs = [];
+               CircleFractalJigsaw.addarcs(p[0], p, arcs, crad, frame, true);
+               arcs.forEach((a) => {
+                  if (allarcs.find(na => na.eq(a))) {
+                     if (inpath) {
+                        path += "\"></path>"
+                        data += path;
+                        inpath = false;
+                     }
+                  } else {
+                     allarcs.push(a);
+                     if (!inpath) {
+                        path = "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"M" + a.sp.x + "," + a.sp.y + " ";
+                        inpath = true;
+                     }
+                     path += a.svg(arcshape);
+                  }
+               });
+               if (inpath) {
+                  path += "\"></path>"
+                  data += path;
+               }
+            });
+            if (customborder.paths) {
+               for (let p of customborder.paths) {
+                  data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"";
+                  data += p.getAttribute("d");
+                  data += "\"></path>";
+               }
+            } else {
+               data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"" + createframe() + "\"></path>";
+            }
+            data += "</svg>";
+            return data;
+         }
+
+         exportsvg_colored(border, crad, arcshape) {
+            var width = this.ncols * 2 * crad + 2 * border;
+            var height = this.nrows * 2 * crad + 2 * border;
+            var data = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><svg baseProfile=\"full\" height=\"" + height + "mm\" version=\"1.1\" viewBox=\"0 0 " + width + " " + height + "\" width=\"" + width + "mm\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:ev=\"http://www.w3.org/2001/xml-events\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs />"
+            seed = coloring_seed;
+            this.multipaths(frame, rad, arcshape).forEach((p) => {
+               data += "<path fill=\"#" + Math.floor(uniform(0, 16777216)).toString(16) + "\" stroke=\"black\" stroke-width=\"" + rad / 20.0 + "\" d=\"";
+               data += p
+               data += "\"></path>"
+            });
+            if (customborder.paths) {
+               for (let p of customborder.paths) {
+                  data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"";
+                  data += p.getAttribute("d");
+                  data += "\"></path>";
+               }
+            } else {
+               data += "<path fill=\"none\" stroke=\"black\" stroke-width=\"0.1\" d=\"" + createframe() + "\"></path>";
+            }
+            data += "</svg>";
+            return data;
+         }
+
+         multipaths(frame, crad, arcshape) {
+            var paths = [];
+            var data = "";
+            this.pieces.forEach((p) => {
+               var data = ""
+               var arcs = [];
+               CircleFractalJigsaw.addarcs(p[0], p, arcs, crad, frame, true);
+               data += "M" + arcs[0].sp.x + "," + arcs[0].sp.y + " ";
+               arcs.forEach((a) => {
+                  data += a.svg(arcshape);
+               });
+               data += "Z"
+               paths.push(data);
+            });
+            return paths;
+         }
+         generate() {
+            while (this.grid.nunvisited) {
+               this.createpiece();
+            }
+            this.regenerategrid();
+         }
+         npieces() {
+            return this.pieces.length;
+         }
+         regenerategrid() {
+            this.grid.reset()
+
+            for (var i = 0; i < this.nrows; i++) {
+               for (var j = 0; j < this.ncols; j++) {
+                  if (this.maskgrid[i][j]) {
+                     this.grid.occupycell({ x: j, y: i });
+                  }
+               }
+            }
+            var np = 1;
+            this.pieces.forEach((p) => {
+               p.forEach((c) => {
+                  if (!this.grid.istilevisited(c.p1)) {
+                     this.grid.visittile(c.p1);
+                  }
+                  if (c.p2_taken) {
+                     if (!this.grid.istilevisited(c.p2)) {
+                        this.grid.visittile(c.p2);
+                     }
+                  }
+                  this.grid.occupycell(c.cell);
+               });
+               np++;
+            });
+         }
+
+      }
+
+
+      // save function pieced together from here: https://stackoverflow.com/questions/19327749/javascript-blob-filename-without-link
+      function save(filename, data) {
+         var blob = new Blob([data], { type: "image/svg+xml" });
+         if (window.navigator.msSaveOrOpenBlob) {
+            window.navigator.msSaveBlob(blob, filename);
+         }
+         else {
+            var elem = window.document.createElement('a');
+            elem.href = window.URL.createObjectURL(blob);
+            elem.download = filename;
+            document.body.appendChild(elem);
+            elem.click();
+            document.body.removeChild(elem);
+         }
+      }
+
+
+
+      function parse_input() {
+         seed = parseInt($("seed").value);
+         ncols = parseInt($("ncols").value);
+         nrows = parseInt($("nrows").value);
+         frame = parseFloat($("frame").value);
+         framecorner = parseFloat($("framecorner").value);
+         rad = parseFloat($("cradius").value);
+         minp = parseInt($("minpsize").value);
+         maxp = parseInt($("maxpsize").value);
+      }
+
+
+      function update() {
+         parse_input();
+         $("width").innerHTML = ncols * 2 * rad + 2 * frame;
+         $("height").innerHTML = nrows * 2 * rad + 2 * frame;
+      }
+      function savesvg(mode) {
+         switch (mode) {
+            case 0:
+               save("jigsaw.svg", jig.exportsvg(frame, rad, arc_shape));
+               break;
+            case 1:
+               save("jigsaw.svg", jig.exportsvg_nooverlap(frame, rad, arc_shape));
+               break;
+            case 2:
+               save("jigsaw.svg", jig.exportsvg_nooverlap_singlepath(frame, rad, arc_shape));
+               break;
+            case 3:
+               save("jigsaw.svg", jig.exportsvg_colored(frame, rad, arc_shape));
+               break;
+         }
+
+      }
+
+      function createframe() {
+         var width = ncols * 2 * rad + 2 * frame;
+         var height = nrows * 2 * rad + 2 * frame;
+
+         var data = "M" + framecorner + "," + 0 + " ";
+         data += "H " + (width - framecorner);
+         if (framecorner > 0) {
+            data += "A " + framecorner + " " + framecorner + " 0 0,1 " + width + " " + framecorner + " ";
+         }
+
+         data += "V " + (height - framecorner);
+         if (framecorner > 0) {
+            data += "A " + framecorner + " " + framecorner + " 0 0,1 " + (width - framecorner) + " " + height + " ";
+         }
+
+         data += "H " + (framecorner);
+         if (framecorner > 0) {
+            data += "A " + framecorner + " " + framecorner + " 0 0,1 " + 0 + " " + (height - framecorner) + " ";
+         }
+
+         data += "V " + (framecorner);
+         if (framecorner > 0) {
+            data += "A " + framecorner + " " + framecorner + " 0 0,1 " + (framecorner) + " " + 0 + " ";
+         }
+
+         data += "Z";
+         return data;
+      }
+
+     function generate() {
+   parse_input();
+   const container = $("puzzlecontainer");
+   // Καθαρίζουμε το container
+   while (container.firstChild) {
+      container.removeChild(container.firstChild);
+   }
+
+   // Αν έχει φορτωθεί custom SVG ως πλαίσιο
+   if (customborder.svgdata) {
+      frame = 0;
+      let svgData = document.body.appendChild(customborder.svgdata);
+      // Εφαρμογή flatten για αφαίρεση μετασχηματισμών
+      flatten(svgData, false, true);
+      const paths = svgData.getElementsByTagName("path");
+      var pgroup = document.createElementNS(container.namespaceURI, "g");
+      container.appendChild(pgroup);
+      
+      // Αποθήκευση του αρχικού CTM
+      const vt = paths[0].getCTM();
+      
+      for (let p of paths) {
+         let newPath = document.createElementNS(container.namespaceURI, "path");
+         newPath.setAttribute("d", p.getAttribute("d"));
+         newPath.setAttribute("stroke", "black");
+         newPath.setAttribute("stroke-width", 1);
+         newPath.setAttribute("fill", "none");
+         pgroup.appendChild(newPath);
+      }
+      document.body.removeChild(svgData);
+      
+      // Εφαρμογή μετασχηματισμού για αφαίρεση του viewBox
+      pgroup.setAttribute("transform", "matrix(" + vt.a + "," + vt.b + "," + vt.c + "," + vt.d + "," + vt.e + "," + vt.f + ")");
+      flatten(container, false, true);
+      // Κλίμακα
+      const scaleFactor = parseFloat($("cbsf").value);
+      pgroup.setAttribute("transform", "scale(" + scaleFactor + ")");
+      flatten(container, false, true);
+      // Μεταφορά στο πάνω αριστερό σημείο
+      const bbox = container.getBBox();
+      pgroup.setAttribute("transform", "translate(" + (-bbox.x) + "," + (-bbox.y) + ")");
+      flatten(container, false, true);
+      
+      // Ενημέρωση διαστάσεων border
+      customborder.width = container.getBBox().width + container.getBBox().x;
+      customborder.height = container.getBBox().height + container.getBBox().y;
+      $("width").innerHTML = Math.round(customborder.width);
+      $("height").innerHTML = Math.round(customborder.height);
+      
+      customborder.paths = pgroup.getElementsByTagName("path");
+      // Ενημέρωση των πλεγμάτων ncols, nrows με βάση το border
+      ncols = Math.ceil(customborder.width / (2 * rad)) + 1;
+      nrows = Math.ceil(customborder.height / (2 * rad)) + 1;
+   }
+   
+   // Δημιουργία του παζλ
+   jig = new CircleFractalJigsaw(ncols, nrows, minp, maxp, customborder, rad);
+   nrows = jig.nrows;
+   ncols = jig.ncols;
+   jig.generate();
+   while (jig.fillholes(false));
+   jig.fillholes(true);
+   
+   // Ρύθμιση του container με τις νέες διαστάσεις
+   container.setAttribute("width", ncols * 2 * rad + 2 * frame);
+   container.setAttribute("height", nrows * 2 * rad + 2 * frame);
+   
+   // Επιλογή σχήματος κομματιών
+   if ($("octagonal").checked) {
+      arc_shape = 2;
+   } else if ($("square").checked) {
+      arc_shape = 1;
+   } else {
+      arc_shape = 0;
+   }
+   
+   // Αν υπάρχει custom border, μεταφέρουμε το group κατά rad ώστε να ευθυγραμμιστεί
+   if (customborder.paths) {
+      pgroup.setAttribute("transform", "translate(" + rad + "," + rad + ")");
+      flatten(container, false, true);
+   } else {
+      let framedraw = document.createElementNS(container.namespaceURI, "path");
+      framedraw.setAttribute("d", createframe());
+      framedraw.setAttribute("stroke", "black");
+      framedraw.setAttribute("fill", "none");
+      framedraw.setAttribute("stroke-width", 0.5);
+      container.appendChild(framedraw);
+   }
+   
+   coloring_seed = seed;
+   // Προσθήκη των μονοπατιών των κομματιών
+   jig.multipaths(frame, rad, arc_shape).forEach((p) => {
+      let newpath = document.createElementNS(container.namespaceURI, "path");
+      newpath.setAttribute("d", p);
+      newpath.setAttribute("stroke", "black");
+      newpath.setAttribute("stroke-width", rad / 20.0);
+      newpath.setAttribute("fill", "#" + Math.floor(uniform(0, 16777216)).toString(16));
+      container.appendChild(newpath);
+   });
+   
+   $("piececount").innerHTML = jig.npieces();
+}
+
+
+      function loadborder() {
+         var borderfile = $("borderfile");
+         var fr = new FileReader();
+         fr.readAsText(borderfile.files[0]);
+         fr.onload = function () {
+            //console.log(fr.result);
+            var parser = new DOMParser();
+            var xmldoc = parser.parseFromString(fr.result, "image/svg+xml");
+
+            var svgdata = xmldoc.getElementsByTagName("svg")[0];
+            customborder.svgdata = svgdata;
+
+         };
+      }
+   </script>
+</head>
+
+
+<body onload="$('seed').value = Math.random() * 10000; updateseed();">
+   <table>
+      <tr>
+         <td>ΤΥΧΑΙΟ</td>
+         <td><input id="_seed" type="text" value="0" onchange="update_seed()" /></td>
+         <td><input id="seed" type="range" value="0" min="0" max="9999" step="1" onchange="updateseed()" /></td>
+      </tr>
+      <tr>
+         <td>ΧΡΗΣΙΜΟΠΟΙΗΣΗ ΤΥΧΑΙΟΤΗΤΑΣ</td>
+         <td><input id="ndr" type="checkbox" />(ΤΟ ΤΥΧΑΙΟ ΔΕΝ ΛΕΙΤΟΥΡΓΕΙ ΑΝ ΤΟ ΚΟΥΤΑΚΙ ΕΙΝΑΙ ΚΛΙΚΑΡΙΣΜΕΝΟ)</td>
+      </tr>
+      <tr>
+         <td>ΣΧΗΜΑ ΚΟΜΜΑΤΙΩΝ</td>
+         <td>
+            <input type="radio" checked="checked" id="circular" name="tileshape" value="circular">
+            <label for="circular">ΚΥΚΛΙΚΟ</label><br>
+            <input type="radio" id="octagonal" name="tileshape" value="octagonal">
+            <label for="octagonal">ΟΚΤΑΓΩΝΟ</label><br>
+            <input type="radio" id="square" name="tileshape" value="square">
+            <label for="square">ΤΕΤΡΑΓΩΝΟ</label><br>
+         </td>
+      </tr>
+      <tr>
+         <td>ΣΤΗΛΕΣ</td>
+         <td><input id="_ncols" type="text" value="20" onchange="update_ncols()" /></td>
+         <td><input id="ncols" type="range" value="20" min="2" max="250" step="1" onchange="updatencols()" /></td>
+      </tr>
+      <tr>
+         <td>ΓΡΑΜΜΕΣ</td>
+         <td><input id="_nrows" type="text" value="20" onchange="update_nrows()" /></td>
+         <td><input id="nrows" type="range" value="20" min="2" max="250" step="1" onchange="updatenrows()" /></td>
+      </tr>
+      <tr>
+         <td>ΑΚΤΙΝΑ ΚΟΜΜΑΤΙΩΝ</td>
+         <td><input id="cradius" type="text" value="6.0" size="4" onchange="update()" /> ΧΙΛΙΟΣΤΑ</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td>ΜΕΓΕΘΟΣ ΠΛΑΙΣΙΟΥ</td>
+         <td><input id="frame" type="text" value="6.0" size="4" onchange="update()" /> ΧΙΛΙΟΣΤΑ</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td>ΓΩΝΙΑΚΗ ΑΚΤΙΝΑ ΠΛΑΙΣΙΟΥ:</td>
+         <td><input id="framecorner" type="text" value="4.0" size="4" onchange="update()" /> ΧΙΛΙΟΣΤΑ</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td>ΕΛΑΧΙΣΤΟ ΜΕΓΕΘΟΣ ΚΟΜΜΑΤΙΟΥ</td>
+         <td><input id="minpsize" type="text" value="4" size="4" onchange="update()" /> ΣΗΜΕΙΑ</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td>ΜΕΓΙΣΤΟ ΜΕΓΕΘΟΣ ΚΟΜΜΑΤΙΟΥ</td>
+         <td><input id="maxpsize" type="text" value="50" size="4" onchange="update()" /> ΣΗΜΕΙΑ</td>
+         <td></td>
+      </tr>
+      <tr>
+         <td>ΜΕΓΕΘΟΣ PUZZLE <label id="width">w</label> x <label id="height">h</label> ΧΙΛΙΟΣΤΑ</td>
+      </tr>
+
+      </tr>
+      <td>
+         <input type="file" id="borderfile" accept=".svg">
+         <button onclick="loadborder()">ΕΙΣΑΓΩΓΗ SVG ΠΛΑΙΣΙΟΥ</button>
+      </td>
+      <td>ΣΥΝΤΕΛΕΣΤΗΣ ΚΛΙΜΑΚΑΣ ΠΛΑΙΣΙΟΥ
+         <input id="cbsf" type="text" value="1" size="4" />
+      </td>
+      <td></td>
+      </tr>
+      <tr>
+         <td><button onclick="generate()">ΦΤΙΑΞΕ</button></td>
+      </tr>
+      <tr>
+         <td><button onclick="savesvg(3)">ΕΞΑΓΩΓΗ SVG (ΤΑ ΚΟΜΜΑΤΙΑ ΕΧΟΥΝ ΧΡΩΜΑ )</button></td>
+         <td><button onclick="savesvg(0)">ΕΞΑΓΩΓΗ SVG (ΞΕΧΩΡΙΣΤΑ ΚΟΜΜΑΤΙΑ,ΤΟ ΕΝΑ ΚΟΜΜΑΤΙ ΕΙΝΑΙ ΠΑΝΩ ΣΤΟ ΑΛΛΟ)</button></td>
+      </tr>
+      <tr>
+         <td><button onclick="savesvg(1)">ΕΞΑΓΩΓΗ SVG (ΤΑ ΚΟΜΜΑΤΙΑ ΔΕΝ ΚΑΛΥΠΤΟΥΝ ΤΟ ΕΝΑ ΤΟ ΑΛΛΟ)</button></td>
+         <td><button onclick="savesvg(2)">ΕΞΑΓΩΓΗ SVG (ΤΑ ΚΟΜΜΑΤΙΑ ΔΕΝ ΚΑΛΥΠΤΟΥΝ ΤΟ ΕΝΑ ΤΟ ΑΛΛΟ.ΜΟΝΗ ΔΙΑΔΡΟΜΗ)</button></td>
+      </tr>
+   </table>
+   <svg id="puzzlecontainer">
+      <!-- <path id="puzzlepath" fill="none" stroke="Black"></path> -->
+   </svg>
+   <table>
+      <tr>
+         <td>ΑΥΤΟ ΤΟ ΠΑΖΛ ΕΧΕΙ  <label id="piececount">0</label> ΚΟΜΜΑΤΙΑ</td>
+      </tr>
+   </table>
+   

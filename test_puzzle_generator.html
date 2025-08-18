@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Puzzle Generator Test</title>
+</head>
+<body>
+    <h1>Puzzle Generator Test</h1>
+    <input type="file" id="imageFile" accept="image/*">
+    <button onclick="testPuzzleGenerator()">Test Puzzle Generator</button>
+    <div id="result"></div>
+
+    <script>
+        let currentImage = null;
+
+        async function testPuzzleGenerator() {
+            const fileInput = document.getElementById('imageFile');
+            const resultDiv = document.getElementById('result');
+            
+            if (!fileInput.files || !fileInput.files[0]) {
+                resultDiv.innerHTML = 'No file selected';
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            console.log('=== PUZZLE GENERATOR TEST ===');
+            console.log('File selected:', file.name, file.size, 'bytes');
+            
+            try {
+                // Simulate the puzzle generator's image loading process
+                const blobUrl = URL.createObjectURL(file);
+                console.log('Blob URL created:', blobUrl);
+                
+                // Create image element like in the generator
+                const img = new Image();
+                img.onload = function() {
+                    currentImage = this;
+                    console.log('Image loaded, src:', currentImage.src.substring(0, 50));
+                    console.log('Image dimensions:', currentImage.naturalWidth, 'x', currentImage.naturalHeight);
+                    
+                    // Now test the conversion process
+                    testImageConversion();
+                };
+                img.src = blobUrl;
+                
+            } catch (error) {
+                console.error('Error loading image:', error);
+                resultDiv.innerHTML = 'Error loading image: ' + error.message;
+            }
+        }
+
+        async function testImageConversion() {
+            const resultDiv = document.getElementById('result');
+            
+            console.log('=== IMAGE CONVERSION DEBUG ===');
+            console.log('Original image src:', currentImage.src.substring(0, 50));
+            console.log('Image complete:', currentImage.complete);
+            console.log('Image natural dimensions:', currentImage.naturalWidth, 'x', currentImage.naturalHeight);
+            
+            if (currentImage.src.startsWith('blob:')) {
+                console.log('BLOB URL DETECTED - Starting conversion...');
+                
+                // Method 1: Try to get the original file from the input
+                const fileInput = document.getElementById('imageFile');
+                if (fileInput && fileInput.files && fileInput.files[0]) {
+                    console.log('Found original file in input:', fileInput.files[0].name, fileInput.files[0].size, 'bytes');
+                    
+                    try {
+                        const imageData = await new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                const result = e.target.result;
+                                console.log('FileReader from input successful, size:', result.length, 'characters');
+                                resolve(result);
+                            };
+                            reader.onerror = function(e) {
+                                console.error('FileReader from input failed:', e);
+                                reject(e);
+                            };
+                            reader.readAsDataURL(fileInput.files[0]);
+                        });
+                        console.log('SUCCESS: Converted using original file input');
+                        
+                        // Test sending to server
+                        await testServerSave(imageData);
+                        
+                    } catch (error) {
+                        console.error('FileReader from input failed:', error);
+                        resultDiv.innerHTML = 'FileReader from input failed: ' + error.message;
+                    }
+                } else {
+                    console.log('No original file found in input, trying blob URL fetch...');
+                    
+                    // Method 2: Fetch from blob URL
+                    try {
+                        const response = await fetch(currentImage.src);
+                        const blob = await response.blob();
+                        
+                        console.log('Blob fetched successfully:', blob.size, 'bytes, type:', blob.type);
+                        
+                        const imageData = await new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                const result = e.target.result;
+                                console.log('FileReader from blob successful, size:', result.length, 'characters');
+                                resolve(result);
+                            };
+                            reader.onerror = function(e) {
+                                console.error('FileReader from blob failed:', e);
+                                reject(e);
+                            };
+                            reader.readAsDataURL(blob);
+                        });
+                        console.log('SUCCESS: Converted using blob URL fetch');
+                        
+                        // Test sending to server
+                        await testServerSave(imageData);
+                        
+                    } catch (error) {
+                        console.error('Blob URL fetch failed:', error);
+                        resultDiv.innerHTML = 'Blob URL fetch failed: ' + error.message;
+                    }
+                }
+            } else {
+                console.log('Using existing data URL (not a blob)');
+                await testServerSave(currentImage.src);
+            }
+            
+            console.log('=== END IMAGE CONVERSION DEBUG ===');
+        }
+
+        async function testServerSave(imageData) {
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                console.log('Testing server save with image data length:', imageData.length);
+                
+                const response = await fetch('/api/puzzle/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        puzzleSpecs: {
+                            pieces: 50,
+                            dimensions: { width: 200, height: 150 },
+                            shape: 'circular',
+                            difficulty: 'easy',
+                            seed: 123,
+                            hasImage: true
+                        },
+                        customerImage: imageData,
+                        svgData: '<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="75" r="25" fill="green"/></svg>',
+                        price: 15.99,
+                        customerInfo: {
+                            name: 'Test User',
+                            email: 'test@example.com',
+                            phone: '1234567890'
+                        }
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Server save failed: ' + response.status);
+                }
+                
+                const result = await response.json();
+                console.log('Server save successful:', result);
+                
+                resultDiv.innerHTML = `
+                    <h3>Test Results:</h3>
+                    <p>✅ File conversion successful</p>
+                    <p>✅ Server save successful</p>
+                    <p>Order ID: ${result.orderId}</p>
+                    <p>Image data length: ${imageData.length}</p>
+                    <p>Data URL preview: ${imageData.substring(0, 100)}...</p>
+                `;
+                
+            } catch (error) {
+                console.error('Server save failed:', error);
+                resultDiv.innerHTML = 'Server save failed: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
