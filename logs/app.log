@@ -1050,3 +1050,5 @@ Admin Dashboard: http://localhost:5000/admin
 [2025-08-18T09:11:39.527Z] [DEBUG] Memory: 160MB / 164MB (97.6%)
 [2025-08-18T09:21:39.511Z] [WARN] High memory usage: 97.6% (160MB / 164MB)
 [2025-08-18T09:21:39.517Z] [DEBUG] Memory: 160MB / 164MB (97.6%)
+[2025-08-18T09:31:39.512Z] [WARN] High memory usage: 97.6% (160MB / 164MB)
+[2025-08-18T09:31:39.525Z] [DEBUG] Memory: 160MB / 164MB (97.6%)
