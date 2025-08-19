@@ -38,6 +38,7 @@ import AdminCustomers from "@/pages/admin/customers";
 import AdminStorage from "@/pages/admin/storage";
 import Checkout from "@/pages/checkout";
 import OrderConfirmation from "@/pages/order-confirmation";
+import PredefinedPuzzlesPage from './pages/predefined-puzzles';
 
 function Router() {
   return (
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/fractal-generator" component={FractalGenerator} />
       <Route path="/puzzle-generator" component={PuzzleGeneratorPage} />
+      <Route path="/predefined-puzzles" component={PredefinedPuzzlesPage} />
       <Route path="/image-editor" component={ImageEditorPage} />
       <Route path="/cart" component={Cart} />
       <Route path="/customer-service" component={CustomerService} />

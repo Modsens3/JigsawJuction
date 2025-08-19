@@ -26,6 +26,15 @@ export default function Navbar() {
   
               <a href="#materials" className="text-neutral hover:text-primary transition-colors" data-testid="link-materials">Υλικά</a>
               <a href="#about" className="text-neutral hover:text-primary transition-colors" data-testid="link-about">Σχετικά</a>
+              <a href="/fractal-generator" className="hover:text-primary transition-colors">
+                Fractal Generator
+              </a>
+              <a href="/predefined-puzzles" className="hover:text-primary transition-colors">
+                Προκαθορισμένα Puzzle
+              </a>
+              <a href="/image-editor" className="hover:text-primary transition-colors">
+                Image Editor
+              </a>
             </nav>
           </div>
 

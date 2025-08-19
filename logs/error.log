@@ -26,3 +26,12 @@
 [2025-08-18T07:28:40.503Z] [ERROR] Critical memory usage: 98.8% (162MB / 164MB)
 [2025-08-18T07:47:57.141Z] [ERROR] Critical memory usage: 95.0% (115MB / 121MB)
 [2025-08-18T07:58:36.571Z] [ERROR] Critical memory usage: 91.9% (170MB / 185MB)
+[2025-08-18T11:42:27.969Z] [ERROR] Failed to get dashboard analytics: | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T11:42:27.970Z] [ERROR] Failed to get analytics overview | User: admin | Error: {}
+[2025-08-18T11:42:39.913Z] [ERROR] Failed to get dashboard analytics: | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T11:42:39.914Z] [ERROR] Failed to get analytics overview | User: admin | Error: {}
+[2025-08-18T11:46:28.763Z] [ERROR] Failed to get dashboard analytics: | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T11:46:28.763Z] [ERROR] Failed to get analytics overview | User: admin | Error: {}
+[2025-08-18T11:46:37.706Z] [ERROR] Failed to get dashboard analytics: | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T11:46:37.706Z] [ERROR] Failed to get analytics overview | User: admin | Error: {}
+[2025-08-18T11:47:45.203Z] [ERROR] Memory cleanup failed | IP: ::1 | Error: {}

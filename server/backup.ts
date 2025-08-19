@@ -16,7 +16,7 @@ import {
   listFilesUniversal
 } from './upload';
 import { fileVersioningSystem } from './versioning';
-import { analyticsSystem } from './analytics';
+import { analyticsService } from './analytics';
 import { fileSynchronizer } from './sync';
 import { bulkOperationsManager } from './bulk-operations';
 
@@ -179,7 +179,7 @@ class BackupSystem {
       // Backup analytics
       if (this.config.includeAnalytics) {
         try {
-          backupData.analytics = await analyticsSystem.getComprehensiveAnalytics();
+          backupData.analytics = await analyticsService.getDashboardAnalytics();
           backupData.metadata.analytics = true;
           this.updateBackupJob(jobId, { analyticsBackedUp: true });
           logger.info(`Analytics backed up for job: ${jobId}`);

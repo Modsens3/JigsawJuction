@@ -50,25 +50,15 @@ export class ImageEditor {
       const img = new Image();
       
       img.onload = () => {
-        try {
-          // Set canvas dimensions to match image
-          this.canvas.width = img.width;
-          this.canvas.height = img.height;
-          
-          // Clear canvas and draw image
-          this.ctx.clearRect(0, 0, img.width, img.height);
-          this.ctx.drawImage(img, 0, 0);
-          
-          // Store original and current image data
-          this.originalImageData = this.ctx.getImageData(0, 0, img.width, img.height);
-          this.currentImageData = this.ctx.getImageData(0, 0, img.width, img.height);
-          
-          console.log('Image loaded successfully:', { width: img.width, height: img.height });
-          resolve();
-        } catch (error) {
-          console.error('Error processing loaded image:', error);
-          reject(error);
-        }
+        this.canvas.width = img.width;
+        this.canvas.height = img.height;
+        this.ctx.drawImage(img, 0, 0);
+        
+        // Store original and current image data
+        this.originalImageData = this.ctx.getImageData(0, 0, img.width, img.height);
+        this.currentImageData = this.ctx.getImageData(0, 0, img.width, img.height);
+        
+        resolve();
       };
       
       img.onerror = (error) => {

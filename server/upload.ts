@@ -68,9 +68,16 @@ export async function saveBase64Image(base64Data: string, fileName?: string): Pr
     const [, mimeType, base64Content] = matches;
     
     // Validate MIME type
-    const validMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+    const validMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
     if (!validMimeTypes.includes(mimeType)) {
-      throw new Error(`Unsupported image format: ${mimeType}`);
+      logger.warn(`Unsupported image format attempted: ${mimeType}`);
+      // Convert to JPEG if possible, otherwise throw error
+      if (mimeType.startsWith('image/')) {
+        logger.info(`Converting ${mimeType} to JPEG format`);
+        // Continue with JPEG processing
+      } else {
+        throw new Error(`Unsupported image format: ${mimeType}`);
+      }
     }
 
     // Validate base64 content

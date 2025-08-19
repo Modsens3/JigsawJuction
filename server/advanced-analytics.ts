@@ -2,7 +2,7 @@ import { db } from './db';
 import { fileStorage, puzzleOrders, authUsers, cartItems } from '../shared/schema';
 import { eq, and, desc, sql, count, sum, avg, max, min, gte, lte } from 'drizzle-orm';
 import { logger } from './logger';
-import { analyticsSystem } from './analytics';
+import { analyticsService } from './analytics';
 
 export interface BusinessMetrics {
   revenue: {
@@ -527,7 +527,7 @@ export class AdvancedAnalyticsSystem {
       ] = await Promise.all([
         this.getBusinessMetrics('month'),
         this.getSalesReport('monthly', startDate, endDate),
-        analyticsSystem.getComprehensiveAnalytics()
+        analyticsService.getDashboardAnalytics()
       ]);
 
       return {

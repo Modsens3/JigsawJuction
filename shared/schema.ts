@@ -173,6 +173,22 @@ export const socialGallery = sqliteTable("social_gallery", {
   updatedAt: text("updated_at").default(sql`(datetime('now'))`),
 });
 
+// Predefined puzzles table
+export const predefinedPuzzles = sqliteTable("predefined_puzzles", {
+  id: text("id").primaryKey().default(sql`(hex(randomblob(16)))`),
+  name: text("name").notNull(),
+  description: text("description"),
+  type: text("type").notNull(), // 'round', 'octagon', 'square'
+  difficulty: text("difficulty").notNull(), // 'easy', 'medium', 'hard', 'very_hard'
+  pieces: integer("pieces").notNull(),
+  imageUrl: text("image_url"),
+  imageFileId: text("image_file_id"),
+  basePrice: real("base_price").notNull(),
+  featured: integer("featured").default(0),
+  createdAt: text("created_at").default(sql`(datetime('now'))`),
+  updatedAt: text("updated_at").default(sql`(datetime('now'))`),
+});
+
 // Users table (alias for authUsers)
 export const users = authUsers;
 
@@ -190,6 +206,7 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts);
 export const insertSubscriptionSchema = createInsertSchema(subscriptions);
 export const insertPuzzleProgressSchema = createInsertSchema(puzzleProgress);
 export const insertSocialGallerySchema = createInsertSchema(socialGallery);
+export const insertPredefinedPuzzleSchema = createInsertSchema(predefinedPuzzles);
 
 // Type exports
 export type AuthUser = typeof authUsers.$inferSelect;
@@ -218,6 +235,8 @@ export type PuzzleProgress = typeof puzzleProgress.$inferSelect;
 export type NewPuzzleProgress = typeof puzzleProgress.$inferInsert;
 export type SocialGalleryPost = typeof socialGallery.$inferSelect;
 export type NewSocialGalleryPost = typeof socialGallery.$inferInsert;
+export type PredefinedPuzzle = typeof predefinedPuzzles.$inferSelect;
+export type NewPredefinedPuzzle = typeof predefinedPuzzles.$inferInsert;
 
 // Additional type aliases for compatibility
 export type User = AuthUser;
@@ -235,6 +254,7 @@ export type InsertPuzzleTemplate = NewPuzzleTemplate;
 export type InsertPuzzleOrder = NewPuzzleOrder;
 export type InsertOrderItem = NewOrderItem;
 export type InsertSocialGalleryPost = NewSocialGalleryPost;
+export type InsertPredefinedPuzzle = NewPredefinedPuzzle;
 
 // PuzzleConfiguration type for cart context
 export interface PuzzleConfiguration {

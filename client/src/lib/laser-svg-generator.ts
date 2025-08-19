@@ -35,7 +35,6 @@ class LaserSVGGenerator {
     const { pieces, width, height } = this.config;
     
     // Always use fallback for now - it's more reliable for laser cutting
-    console.log('Using fallback jigsaw pattern for laser cutting');
     return this.generateFallbackPaths();
   }
   
@@ -133,8 +132,6 @@ class LaserSVGGenerator {
     const { width, height } = this.config;
     const { strokeWidth } = this.options;
     
-    console.log(`Generating SVG for ${this.config.pieces} pieces, ${paths.length} paths generated`);
-    
     let svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="${width}mm" height="${height}mm" viewBox="0 0 ${width} ${height}" 
      xmlns="http://www.w3.org/2000/svg">
@@ -213,8 +210,6 @@ export function downloadSVG(svgContent: string, filename: string): void {
       type: 'image/svg+xml;charset=utf-8' 
     });
     
-    console.log('Creating download blob, size:', blob.size);
-    
     const url = URL.createObjectURL(blob);
     
     const link = document.createElement('a');
@@ -232,7 +227,6 @@ export function downloadSVG(svgContent: string, filename: string): void {
       URL.revokeObjectURL(url);
     }, 100);
     
-    console.log('SVG download initiated:', filename);
   } catch (error) {
     console.error('Error downloading SVG:', error);
   }

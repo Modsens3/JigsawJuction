@@ -1052,3 +1052,1510 @@ Admin Dashboard: http://localhost:5000/admin
 [2025-08-18T09:21:39.517Z] [DEBUG] Memory: 160MB / 164MB (97.6%)
 [2025-08-18T09:31:39.512Z] [WARN] High memory usage: 97.6% (160MB / 164MB)
 [2025-08-18T09:31:39.525Z] [DEBUG] Memory: 160MB / 164MB (97.6%)
+[2025-08-18T09:41:39.546Z] [WARN] High memory usage: 97.6% (160MB / 164MB)
+[2025-08-18T09:41:39.558Z] [DEBUG] Memory: 160MB / 164MB (97.6%)
+[2025-08-18T09:46:16.596Z] [INFO] GET /api/predefined-puzzles 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":404,"duration":"136ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:46:28.304Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"68ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:46:34.630Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"9ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:47:00.803Z] [INFO] Received SIGTERM, starting graceful shutdown...
+[2025-08-18T09:47:00.816Z] [INFO] Server closed
+[2025-08-18T09:48:20.001Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T09:48:20.094Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T09:48:20.094Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T09:48:20.096Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T09:48:20.096Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T09:48:20.432Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T09:48:20.432Z] [INFO] serving on port 5000
+[2025-08-18T09:48:20.433Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T09:48:21.416Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"13ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:48:26.693Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"11ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:48:30.401Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:49:24.063Z] [INFO] Received SIGTERM, starting graceful shutdown...
+[2025-08-18T09:49:24.085Z] [INFO] Server closed
+[2025-08-18T09:49:29.723Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T09:49:29.779Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T09:49:29.780Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T09:49:29.780Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T09:49:29.780Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T09:49:29.824Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T09:49:29.824Z] [INFO] serving on port 5000
+[2025-08-18T09:49:29.824Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T09:49:35.574Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"8ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:49:39.019Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:51:19.098Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T09:51:19.158Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T09:51:19.158Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T09:51:19.159Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T09:51:19.159Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T09:51:19.332Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T09:51:19.332Z] [INFO] serving on port 5000
+[2025-08-18T09:51:19.332Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T09:51:27.264Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"9ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:51:30.716Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:51:39.083Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:51:43.576Z] [INFO] GET /api/predefined-puzzles/types 404 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":404,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:51:57.263Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:52:26.039Z] [INFO] Received SIGTERM, starting graceful shutdown...
+[2025-08-18T09:52:26.045Z] [INFO] Server closed
+[2025-08-18T09:52:32.379Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T09:52:32.438Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T09:52:32.438Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T09:52:32.439Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T09:52:32.439Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T09:52:32.477Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T09:52:32.478Z] [INFO] serving on port 5000
+[2025-08-18T09:52:32.478Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T09:52:34.624Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"7ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:52:40.486Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:53:46.679Z] [INFO] Received SIGTERM, starting graceful shutdown...
+[2025-08-18T09:53:46.710Z] [INFO] Server closed
+[2025-08-18T09:53:52.509Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T09:53:52.560Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T09:53:52.560Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T09:53:52.561Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T09:53:52.561Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T09:53:52.598Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T09:53:52.598Z] [INFO] serving on port 5000
+[2025-08-18T09:53:52.598Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T09:53:55.082Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"9ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:54:00.815Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:54:06.715Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:56:40.770Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"21ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T09:56:45.851Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"5ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:03:52.651Z] [WARN] High memory usage: 96.7% (116MB / 120MB)
+[2025-08-18T10:03:52.670Z] [DEBUG] Memory: 116MB / 120MB (96.7%)
+[2025-08-18T10:13:52.656Z] [WARN] High memory usage: 96.7% (116MB / 120MB)
+[2025-08-18T10:13:52.674Z] [DEBUG] Memory: 116MB / 120MB (96.7%)
+[2025-08-18T10:22:27.199Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"136ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:22:38.170Z] [INFO] POST /api/admin/memory-cleanup 401 | IP: ::1 | Data: {"method":"POST","path":"/api/admin/memory-cleanup","statusCode":401,"duration":"12ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:22:49.564Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"4ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:23:00.410Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"11ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:23:52.652Z] [WARN] High memory usage: 96.7% (117MB / 121MB)
+[2025-08-18T10:23:52.660Z] [DEBUG] Memory: 117MB / 121MB (96.7%)
+[2025-08-18T10:27:15.384Z] [INFO] Received SIGTERM, starting graceful shutdown...
+[2025-08-18T10:27:15.407Z] [INFO] Server closed
+[2025-08-18T10:27:21.406Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:27:21.474Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T10:27:21.474Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T10:27:21.475Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T10:27:21.475Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T10:27:21.518Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T10:27:21.518Z] [INFO] serving on port 5000
+[2025-08-18T10:27:21.518Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T10:27:23.131Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"8ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:27:27.734Z] [INFO] Memory cleanup completed. Freed: 0MB
+[2025-08-18T10:27:27.735Z] [INFO] POST /api/memory-cleanup 200 | IP: ::1 | Data: {"method":"POST","path":"/api/memory-cleanup","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:27:32.740Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:27:51.527Z] [WARN] High memory usage detected: 97% (116MB / 120MB)
+[2025-08-18T10:27:51.532Z] [INFO] Memory cleanup: 116MB / 120MB (97%)
+[2025-08-18T10:28:21.523Z] [WARN] High memory usage detected: 97% (116MB / 120MB)
+[2025-08-18T10:28:21.524Z] [INFO] Memory cleanup: 116MB / 120MB (97%)
+[2025-08-18T10:28:51.523Z] [WARN] High memory usage detected: 97% (116MB / 120MB)
+[2025-08-18T10:28:51.527Z] [INFO] Memory cleanup: 116MB / 120MB (97%)
+[2025-08-18T10:29:21.525Z] [WARN] High memory usage detected: 97% (116MB / 120MB)
+[2025-08-18T10:29:21.531Z] [INFO] Memory cleanup: 116MB / 120MB (97%)
+[2025-08-18T10:29:51.524Z] [WARN] High memory usage detected: 97% (116MB / 120MB)
+[2025-08-18T10:29:51.525Z] [INFO] Memory cleanup: 116MB / 120MB (97%)
+[2025-08-18T10:30:21.525Z] [WARN] High memory usage detected: 97% (116MB / 120MB)
+[2025-08-18T10:30:21.529Z] [INFO] Memory cleanup: 116MB / 120MB (97%)
+[2025-08-18T10:30:37.174Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"28ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:30:51.525Z] [WARN] High memory usage detected: 97% (116MB / 120MB)
+[2025-08-18T10:30:51.526Z] [INFO] Memory cleanup: 116MB / 120MB (97%)
+[2025-08-18T10:30:53.166Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"22ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:30:57.685Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"7ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:31:21.525Z] [WARN] High memory usage detected: 98% (117MB / 120MB)
+[2025-08-18T10:31:21.526Z] [INFO] Memory cleanup: 117MB / 120MB (98%)
+[2025-08-18T10:31:28.208Z] [INFO] Received SIGTERM, starting graceful shutdown...
+[2025-08-18T10:31:28.216Z] [INFO] Server closed
+[2025-08-18T10:33:47.157Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:33:47.215Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T10:33:47.216Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T10:33:47.217Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T10:33:47.217Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T10:33:47.269Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T10:33:47.269Z] [INFO] serving on port 5000
+[2025-08-18T10:33:47.269Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T10:33:51.485Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"10ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:34:01.353Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:34:05.975Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:34:34.957Z] [INFO] POST /api/admin/memory-cleanup 401 | IP: ::1 | Data: {"method":"POST","path":"/api/admin/memory-cleanup","statusCode":401,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:34:40.097Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:35:33.687Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"5ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:37:59.198Z] [INFO] Received SIGTERM, starting graceful shutdown...
+[2025-08-18T10:37:59.215Z] [INFO] Server closed
+[2025-08-18T10:38:11.827Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:38:11.885Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T10:38:11.885Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T10:38:11.886Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T10:38:11.886Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T10:38:11.927Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T10:38:11.927Z] [INFO] serving on port 5000
+[2025-08-18T10:38:11.927Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T10:38:16.543Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"7ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:39:32.619Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"11ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:39:46.817Z] [INFO] POST /api/memory-cleanup 404 | IP: ::1 | Data: {"method":"POST","path":"/api/memory-cleanup","statusCode":404,"duration":"34ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:39:56.134Z] [INFO] POST /api/memory-cleanup 404 | IP: ::1 | Data: {"method":"POST","path":"/api/memory-cleanup","statusCode":404,"duration":"6ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:40:44.709Z] [INFO] POST /api/memory-cleanup 404 | IP: ::1 | Data: {"method":"POST","path":"/api/memory-cleanup","statusCode":404,"duration":"5ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:40:49.447Z] [INFO] POST /api/memory-cleanup 404 | IP: ::1 | Data: {"method":"POST","path":"/api/memory-cleanup","statusCode":404,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:40:56.069Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"5ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:41:06.793Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:42:07.753Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:42:32.585Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"62ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:42:42.345Z] [INFO] POST /api/memory-cleanup 404 | IP: ::1 | Data: {"method":"POST","path":"/api/memory-cleanup","statusCode":404,"duration":"16ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:42:59.574Z] [INFO] POST /api/admin/memory-cleanup 401 | IP: ::1 | Data: {"method":"POST","path":"/api/admin/memory-cleanup","statusCode":401,"duration":"28ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:43:07.155Z] [INFO] Authentication admin_login successful | IP: ::1 | Data: {"userId":"admin","action":"admin_login","success":true}
+[2025-08-18T10:43:07.158Z] [INFO] POST /api/auth/admin/login 200 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/admin/login","statusCode":200,"duration":"432ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:43:11.939Z] [WARN] High memory usage: 95.9% (116MB / 121MB)
+[2025-08-18T10:43:11.941Z] [DEBUG] Memory: 116MB / 121MB (95.9%)
+[2025-08-18T10:43:16.912Z] [INFO] POST /api/admin/memory-cleanup 200 | User: admin | Data: {"method":"POST","path":"/api/admin/memory-cleanup","statusCode":200,"duration":"15ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:45:30.542Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"37ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:46:07.026Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"8ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:46:12.698Z] [INFO] POST /api/admin/memory-cleanup 200 | User: admin | Data: {"method":"POST","path":"/api/admin/memory-cleanup","statusCode":200,"duration":"10ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:47:19.869Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"10ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:47:41.834Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"11ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:47:49.495Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"5ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:47:54.931Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"6ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:48:11.958Z] [WARN] High memory usage: 95.9% (116MB / 121MB)
+[2025-08-18T10:48:11.960Z] [DEBUG] Memory: 116MB / 121MB (95.9%)
+[2025-08-18T10:48:24.596Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"39ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:48:29.035Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"6ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:48:52.380Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"14ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:49:02.710Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"9ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:49:30.239Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:49:33.753Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"13ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:49:39.314Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"6ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:50:03.734Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:50:08.239Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"4ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:50:13.652Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"10ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:50:32.130Z] [INFO] POST /api/admin/memory-cleanup 200 | User: admin | Data: {"method":"POST","path":"/api/admin/memory-cleanup","statusCode":200,"duration":"11ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:51:11.969Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"21ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:52:23.727Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:53:27.772Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:54:34.463Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:54:34.552Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T10:54:34.552Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T10:54:34.552Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T10:54:34.552Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T10:54:34.609Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T10:54:34.610Z] [INFO] serving on port 5000
+[2025-08-18T10:54:34.610Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T10:54:43.072Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"9ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:54:54.969Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:55:01.633Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"4ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:55:07.664Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:55:16.843Z] [INFO] Manual garbage collection triggered by admin
+[2025-08-18T10:55:16.846Z] [INFO] POST /api/admin/memory-cleanup 200 | User: admin | Data: {"method":"POST","path":"/api/admin/memory-cleanup","statusCode":200,"duration":"43ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:55:25.177Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T10:56:34.612Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T10:56:34.685Z] [INFO] Garbage collection triggered
+[2025-08-18T10:59:40.737Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T10:59:40.799Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T10:59:40.800Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T10:59:40.801Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T10:59:40.801Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T10:59:40.847Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T10:59:40.847Z] [INFO] serving on port 5000
+[2025-08-18T10:59:40.847Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T10:59:56.615Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"9ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:00:14.594Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:00:26.433Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:00:39.923Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:00:51.317Z] [INFO] Authentication signup successful | IP: ::1 | Data: {"userId":"7924AA4CC5DB661AC90FAEFE49F16947","action":"signup","success":true}
+[2025-08-18T11:00:51.319Z] [INFO] POST /api/auth/signup 201 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/signup","statusCode":201,"duration":"79ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:01:03.451Z] [INFO] POST /api/auth/signup 409 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/signup","statusCode":409,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:01:12.716Z] [INFO] Authentication admin_login successful | IP: ::1 | Data: {"userId":"admin","action":"admin_login","success":true}
+[2025-08-18T11:01:12.717Z] [INFO] POST /api/auth/admin/login 200 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/admin/login","statusCode":200,"duration":"267ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:01:18.975Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:01:40.847Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:01:40.864Z] [INFO] Garbage collection triggered
+[2025-08-18T11:07:25.390Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T11:07:25.477Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T11:07:25.477Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T11:07:25.478Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T11:07:25.478Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T11:07:25.574Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T11:07:25.574Z] [INFO] serving on port 5000
+[2025-08-18T11:07:25.574Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T11:07:31.570Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"14ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:07:49.968Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"19ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:08:06.198Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"11ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:08:25.593Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:08:25.792Z] [INFO] Garbage collection triggered
+[2025-08-18T11:11:28.033Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T11:11:28.133Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T11:11:28.134Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T11:11:28.134Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T11:11:28.135Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T11:11:28.194Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T11:11:28.195Z] [INFO] serving on port 5000
+[2025-08-18T11:11:28.195Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T11:11:34.606Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"18ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:11:43.738Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"5ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:12:28.214Z] [WARN] High memory usage: 94.9% (111MB / 117MB)
+[2025-08-18T11:12:28.294Z] [INFO] Garbage collection triggered
+[2025-08-18T11:38:13.886Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T11:38:13.970Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T11:38:13.970Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T11:38:13.970Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T11:38:13.971Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T11:38:14.767Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T11:38:14.767Z] [INFO] serving on port 5000
+[2025-08-18T11:38:14.767Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T11:41:36.459Z] [INFO] Cache system initialized | Data: {"enabled":true,"type":"memory","ttl":3600,"maxSize":1000,"cleanupInterval":300}
+[2025-08-18T11:41:36.531Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T11:41:36.531Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T11:41:36.532Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T11:41:36.532Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T11:41:36.571Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T11:41:36.571Z] [INFO] serving on port 5000
+[2025-08-18T11:41:36.572Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-18T11:41:40.512Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"8ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:41:47.027Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"8ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:41:52.965Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:41:57.726Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:42:03.200Z] [INFO] Authentication signup successful | IP: ::1 | Data: {"userId":"4DB096FBB6DA85230D458D50DDE5E2D4","action":"signup","success":true}
+[2025-08-18T11:42:03.201Z] [INFO] POST /api/auth/signup 201 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/signup","statusCode":201,"duration":"73ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:42:09.426Z] [INFO] POST /api/auth/signup 409 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/signup","statusCode":409,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:42:15.383Z] [INFO] Authentication admin_login successful | IP: ::1 | Data: {"userId":"admin","action":"admin_login","success":true}
+[2025-08-18T11:42:15.385Z] [INFO] POST /api/auth/admin/login 200 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/admin/login","statusCode":200,"duration":"260ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:42:21.019Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:42:27.925Z] [INFO] Authentication admin_login successful | IP: ::1 | Data: {"userId":"admin","action":"admin_login","success":true}
+[2025-08-18T11:42:27.927Z] [INFO] POST /api/auth/admin/login 200 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/admin/login","statusCode":200,"duration":"260ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:42:27.969Z] [ERROR] Failed to get dashboard analytics: | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T11:42:27.970Z] [ERROR] Failed to get analytics overview | User: admin | Error: {}
+[2025-08-18T11:42:27.971Z] [INFO] GET /api/analytics/overview 500 | User: admin | Data: {"method":"GET","path":"/api/analytics/overview","statusCode":500,"duration":"10ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:42:36.568Z] [WARN] High memory usage: 95.8% (113MB / 118MB)
+[2025-08-18T11:42:36.589Z] [INFO] Garbage collection triggered
+[2025-08-18T11:42:36.607Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:42:36.608Z] [DEBUG] Memory: 113MB / 118MB (95.8%)
+[2025-08-18T11:42:39.913Z] [ERROR] Failed to get dashboard analytics: | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T11:42:39.914Z] [ERROR] Failed to get analytics overview | User: admin | Error: {}
+[2025-08-18T11:42:39.915Z] [INFO] GET /api/analytics/overview 500 | User: admin | Data: {"method":"GET","path":"/api/analytics/overview","statusCode":500,"duration":"4ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:43:36.579Z] [WARN] High memory usage: 94.9% (112MB / 118MB)
+[2025-08-18T11:43:36.685Z] [INFO] Garbage collection triggered
+[2025-08-18T11:43:36.708Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:43:36.709Z] [DEBUG] Memory: 112MB / 118MB (94.9%)
+[2025-08-18T11:44:36.573Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:44:36.700Z] [INFO] Garbage collection triggered
+[2025-08-18T11:44:36.729Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:44:36.729Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:45:27.346Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"21ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:45:33.748Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:45:36.573Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:45:36.593Z] [INFO] Garbage collection triggered
+[2025-08-18T11:45:36.617Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:45:36.617Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:45:39.311Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:45:46.221Z] [INFO] Authentication admin_login successful | IP: ::1 | Data: {"userId":"admin","action":"admin_login","success":true}
+[2025-08-18T11:45:46.224Z] [INFO] POST /api/auth/admin/login 200 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/admin/login","statusCode":200,"duration":"276ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:45:50.375Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:46:28.707Z] [INFO] Authentication admin_login successful | IP: ::1 | Data: {"userId":"admin","action":"admin_login","success":true}
+[2025-08-18T11:46:28.708Z] [INFO] POST /api/auth/admin/login 200 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/admin/login","statusCode":200,"duration":"268ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:46:28.763Z] [ERROR] Failed to get dashboard analytics: | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T11:46:28.763Z] [ERROR] Failed to get analytics overview | User: admin | Error: {}
+[2025-08-18T11:46:28.764Z] [INFO] GET /api/analytics/overview 500 | User: admin | Data: {"method":"GET","path":"/api/analytics/overview","statusCode":500,"duration":"12ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:46:36.576Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T11:46:36.595Z] [INFO] Garbage collection triggered
+[2025-08-18T11:46:36.618Z] [INFO] Memory freed after cleanup: 1MB
+[2025-08-18T11:46:36.619Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T11:46:37.706Z] [ERROR] Failed to get dashboard analytics: | Error: {"code":"SQLITE_ERROR"}
+[2025-08-18T11:46:37.706Z] [ERROR] Failed to get analytics overview | User: admin | Error: {}
+[2025-08-18T11:46:37.707Z] [INFO] GET /api/analytics/overview 500 | User: admin | Data: {"method":"GET","path":"/api/analytics/overview","statusCode":500,"duration":"6ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:46:48.008Z] [INFO] Authentication signup successful | IP: ::1 | Data: {"userId":"6FF87B2A688071C2373A45D8E76E74BF","action":"signup","success":true}
+[2025-08-18T11:46:48.009Z] [INFO] POST /api/auth/signup 201 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/signup","statusCode":201,"duration":"63ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:47:02.554Z] [INFO] POST /api/auth/signup 409 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/signup","statusCode":409,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:47:16.586Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:47:23.410Z] [INFO] GET /api/predefined-puzzles/types 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles/types","statusCode":200,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:47:36.579Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:47:36.673Z] [INFO] Garbage collection triggered
+[2025-08-18T11:47:36.715Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:47:36.715Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:47:45.191Z] [INFO] Manual garbage collection triggered
+[2025-08-18T11:47:45.203Z] [ERROR] Memory cleanup failed | IP: ::1 | Error: {}
+[2025-08-18T11:47:45.214Z] [INFO] POST /api/memory-cleanup 500 | IP: ::1 | Data: {"method":"POST","path":"/api/memory-cleanup","statusCode":500,"duration":"73ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T11:48:36.586Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T11:48:36.706Z] [INFO] Garbage collection triggered
+[2025-08-18T11:48:36.731Z] [INFO] Memory freed after cleanup: 1MB
+[2025-08-18T11:48:36.731Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T11:49:36.579Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:49:36.596Z] [INFO] Garbage collection triggered
+[2025-08-18T11:49:36.617Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:49:36.617Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:50:36.579Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:50:36.698Z] [INFO] Garbage collection triggered
+[2025-08-18T11:50:36.721Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:50:36.721Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:51:36.579Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:51:36.635Z] [INFO] Garbage collection triggered
+[2025-08-18T11:51:36.654Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:51:36.654Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:52:36.578Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:52:36.678Z] [INFO] Garbage collection triggered
+[2025-08-18T11:52:36.709Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:52:36.709Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:53:36.579Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:53:36.669Z] [INFO] Garbage collection triggered
+[2025-08-18T11:53:36.693Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:53:36.693Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:54:36.578Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:54:36.672Z] [INFO] Garbage collection triggered
+[2025-08-18T11:54:36.695Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:54:36.695Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:55:36.576Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:55:36.598Z] [INFO] Garbage collection triggered
+[2025-08-18T11:55:36.620Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:55:36.621Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:56:36.576Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:56:36.736Z] [INFO] Garbage collection triggered
+[2025-08-18T11:56:36.790Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:56:36.791Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:57:36.578Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:57:36.669Z] [INFO] Garbage collection triggered
+[2025-08-18T11:57:36.690Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:57:36.691Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:58:36.576Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:58:36.656Z] [INFO] Garbage collection triggered
+[2025-08-18T11:58:36.677Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:58:36.678Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T11:59:36.577Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T11:59:36.765Z] [INFO] Garbage collection triggered
+[2025-08-18T11:59:36.803Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T11:59:36.804Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:00:36.577Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:00:36.674Z] [INFO] Garbage collection triggered
+[2025-08-18T12:00:36.701Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:00:36.702Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:01:36.600Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:01:36.689Z] [INFO] Garbage collection triggered
+[2025-08-18T12:01:36.708Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:01:36.708Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:02:36.616Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:02:36.728Z] [INFO] Garbage collection triggered
+[2025-08-18T12:02:36.760Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:02:36.761Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:03:36.618Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:03:36.743Z] [INFO] Garbage collection triggered
+[2025-08-18T12:03:36.764Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:03:36.764Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:04:36.695Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:04:37.497Z] [INFO] Garbage collection triggered
+[2025-08-18T12:04:37.540Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:04:37.540Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:05:36.626Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:05:36.745Z] [INFO] Garbage collection triggered
+[2025-08-18T12:05:36.785Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:05:36.785Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:06:36.626Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:06:36.719Z] [INFO] Garbage collection triggered
+[2025-08-18T12:06:36.744Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:06:36.745Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:07:36.625Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:07:36.722Z] [INFO] Garbage collection triggered
+[2025-08-18T12:07:36.743Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:07:36.744Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:08:36.622Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:08:36.682Z] [INFO] Garbage collection triggered
+[2025-08-18T12:08:36.701Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:08:36.702Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:09:36.622Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:09:36.675Z] [INFO] Garbage collection triggered
+[2025-08-18T12:09:36.694Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:09:36.695Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:10:36.623Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:10:36.705Z] [INFO] Garbage collection triggered
+[2025-08-18T12:10:36.723Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:10:36.724Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:11:36.624Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:11:36.695Z] [INFO] Garbage collection triggered
+[2025-08-18T12:11:36.713Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:11:36.713Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:12:36.624Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:12:36.698Z] [INFO] Garbage collection triggered
+[2025-08-18T12:12:36.718Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:12:36.718Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:13:36.628Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:13:36.791Z] [INFO] Garbage collection triggered
+[2025-08-18T12:13:36.818Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:13:36.819Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:14:36.627Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:14:36.712Z] [INFO] Garbage collection triggered
+[2025-08-18T12:14:36.739Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:14:36.740Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:15:36.627Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:15:36.688Z] [INFO] Garbage collection triggered
+[2025-08-18T12:15:36.720Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:15:36.721Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:16:36.634Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:16:36.762Z] [INFO] Garbage collection triggered
+[2025-08-18T12:16:36.798Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:16:36.798Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:17:36.671Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:17:36.761Z] [INFO] Garbage collection triggered
+[2025-08-18T12:17:36.784Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:17:36.785Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:18:36.671Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:18:36.726Z] [INFO] Garbage collection triggered
+[2025-08-18T12:18:36.745Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:18:36.746Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:19:36.673Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:19:36.803Z] [INFO] Garbage collection triggered
+[2025-08-18T12:19:36.828Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:19:36.828Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:20:36.681Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:20:36.750Z] [INFO] Garbage collection triggered
+[2025-08-18T12:20:36.770Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:20:36.771Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:21:36.684Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:21:36.740Z] [INFO] Garbage collection triggered
+[2025-08-18T12:21:36.759Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:21:36.759Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:22:36.682Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:22:36.749Z] [INFO] Garbage collection triggered
+[2025-08-18T12:22:36.769Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:22:36.769Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:23:36.683Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:23:36.703Z] [INFO] Garbage collection triggered
+[2025-08-18T12:23:36.724Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:23:36.724Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:24:36.686Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:24:36.771Z] [INFO] Garbage collection triggered
+[2025-08-18T12:24:36.791Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:24:36.791Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:25:36.684Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:25:36.756Z] [INFO] Garbage collection triggered
+[2025-08-18T12:25:36.777Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:25:36.777Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:26:36.685Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:26:36.750Z] [INFO] Garbage collection triggered
+[2025-08-18T12:26:36.782Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:26:36.783Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:27:36.684Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:27:36.704Z] [INFO] Garbage collection triggered
+[2025-08-18T12:27:36.721Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:27:36.721Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:28:36.684Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:28:36.705Z] [INFO] Garbage collection triggered
+[2025-08-18T12:28:36.722Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:28:36.722Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:29:36.710Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:29:36.801Z] [INFO] Garbage collection triggered
+[2025-08-18T12:29:36.821Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:29:36.822Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:30:36.713Z] [WARN] High memory usage: 95.7% (112MB / 117MB)
+[2025-08-18T12:30:36.796Z] [INFO] Garbage collection triggered
+[2025-08-18T12:30:36.815Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:30:36.816Z] [DEBUG] Memory: 112MB / 117MB (95.7%)
+[2025-08-18T12:31:36.713Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:31:36.816Z] [INFO] Garbage collection triggered
+[2025-08-18T12:31:36.839Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:31:36.839Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:32:36.731Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:32:36.833Z] [INFO] Garbage collection triggered
+[2025-08-18T12:32:36.861Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:32:36.862Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:33:36.735Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:33:36.855Z] [INFO] Garbage collection triggered
+[2025-08-18T12:33:36.878Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:33:36.878Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:34:36.734Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:34:36.821Z] [INFO] Garbage collection triggered
+[2025-08-18T12:34:36.851Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:34:36.851Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:34:40.640Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"22ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T12:35:15.715Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"5ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T12:35:36.734Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:35:36.791Z] [INFO] Garbage collection triggered
+[2025-08-18T12:35:36.813Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:35:36.813Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:36:36.739Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:36:36.812Z] [INFO] Garbage collection triggered
+[2025-08-18T12:36:36.833Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:36:36.833Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:37:36.760Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:37:36.864Z] [INFO] Garbage collection triggered
+[2025-08-18T12:37:36.886Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:37:36.887Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:38:36.758Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:38:36.894Z] [INFO] Garbage collection triggered
+[2025-08-18T12:38:36.915Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:38:36.915Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:39:36.760Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:39:37.102Z] [INFO] Garbage collection triggered
+[2025-08-18T12:39:37.143Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:39:37.144Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:40:36.765Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:40:36.907Z] [INFO] Garbage collection triggered
+[2025-08-18T12:40:36.929Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:40:36.929Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:41:36.760Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:41:36.848Z] [INFO] Garbage collection triggered
+[2025-08-18T12:41:36.869Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:41:36.869Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:42:36.783Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:42:37.261Z] [INFO] Garbage collection triggered
+[2025-08-18T12:42:37.305Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:42:37.307Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:43:36.804Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:43:37.650Z] [INFO] Garbage collection triggered
+[2025-08-18T12:43:37.771Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:43:37.772Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:44:36.828Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:44:39.162Z] [INFO] Garbage collection triggered
+[2025-08-18T12:44:39.198Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:44:39.198Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:45:36.872Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:45:37.351Z] [INFO] Garbage collection triggered
+[2025-08-18T12:45:37.383Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:45:37.384Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:46:36.777Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:46:37.148Z] [INFO] Garbage collection triggered
+[2025-08-18T12:46:37.173Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:46:37.173Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:47:36.778Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:47:36.879Z] [INFO] Garbage collection triggered
+[2025-08-18T12:47:36.902Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:47:36.903Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:48:36.747Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:48:36.968Z] [INFO] Garbage collection triggered
+[2025-08-18T12:48:37.004Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:48:37.004Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:49:36.746Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:49:36.841Z] [INFO] Garbage collection triggered
+[2025-08-18T12:49:36.861Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:49:36.862Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:50:36.749Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:50:36.847Z] [INFO] Garbage collection triggered
+[2025-08-18T12:50:36.868Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:50:36.868Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:51:36.746Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:51:36.825Z] [INFO] Garbage collection triggered
+[2025-08-18T12:51:36.849Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:51:36.849Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:52:36.745Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:52:36.816Z] [INFO] Garbage collection triggered
+[2025-08-18T12:52:36.836Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:52:36.836Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:53:36.744Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:53:36.761Z] [INFO] Garbage collection triggered
+[2025-08-18T12:53:36.780Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:53:36.780Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:54:36.742Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:54:36.765Z] [INFO] Garbage collection triggered
+[2025-08-18T12:54:36.786Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:54:36.786Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:55:36.740Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:55:36.756Z] [INFO] Garbage collection triggered
+[2025-08-18T12:55:36.774Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:55:36.774Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:56:36.741Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:56:36.891Z] [INFO] Garbage collection triggered
+[2025-08-18T12:56:36.917Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:56:36.917Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:57:36.739Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:57:36.806Z] [INFO] Garbage collection triggered
+[2025-08-18T12:57:36.826Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:57:36.826Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:58:36.744Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:58:36.762Z] [INFO] Garbage collection triggered
+[2025-08-18T12:58:36.780Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:58:36.780Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T12:59:36.767Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T12:59:36.785Z] [INFO] Garbage collection triggered
+[2025-08-18T12:59:36.807Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T12:59:36.807Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:00:36.767Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:00:36.854Z] [INFO] Garbage collection triggered
+[2025-08-18T13:00:36.874Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:00:36.875Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:01:36.765Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:01:36.782Z] [INFO] Garbage collection triggered
+[2025-08-18T13:01:36.801Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:01:36.801Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:02:36.764Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:02:36.820Z] [INFO] Garbage collection triggered
+[2025-08-18T13:02:36.841Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:02:36.841Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:03:36.767Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:03:36.869Z] [INFO] Garbage collection triggered
+[2025-08-18T13:03:36.895Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:03:36.896Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:04:36.767Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:04:36.860Z] [INFO] Garbage collection triggered
+[2025-08-18T13:04:36.886Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:04:36.887Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:05:36.808Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:05:41.042Z] [INFO] Garbage collection triggered
+[2025-08-18T13:05:41.680Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:05:41.692Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:06:36.794Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:06:36.977Z] [INFO] Garbage collection triggered
+[2025-08-18T13:06:37.002Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:06:37.003Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:07:36.788Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:07:36.879Z] [INFO] Garbage collection triggered
+[2025-08-18T13:07:36.901Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:07:36.901Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:08:36.789Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:08:36.932Z] [INFO] Garbage collection triggered
+[2025-08-18T13:08:36.966Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:08:36.967Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:09:36.788Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:09:36.857Z] [INFO] Garbage collection triggered
+[2025-08-18T13:09:36.878Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:09:36.879Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:10:36.789Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:10:37.064Z] [INFO] Garbage collection triggered
+[2025-08-18T13:10:37.102Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:10:37.102Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:11:36.884Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:11:37.018Z] [INFO] Garbage collection triggered
+[2025-08-18T13:11:37.051Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:11:37.052Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:12:36.887Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:12:36.936Z] [INFO] Garbage collection triggered
+[2025-08-18T13:12:36.955Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:12:36.955Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:13:36.885Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:13:37.061Z] [INFO] Garbage collection triggered
+[2025-08-18T13:13:37.105Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:13:37.106Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:14:36.887Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:14:37.020Z] [INFO] Garbage collection triggered
+[2025-08-18T13:14:37.080Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:14:37.084Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:15:36.889Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:15:37.018Z] [INFO] Garbage collection triggered
+[2025-08-18T13:15:37.042Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:15:37.043Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:16:36.886Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:16:36.974Z] [INFO] Garbage collection triggered
+[2025-08-18T13:16:36.999Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:16:36.999Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:17:36.898Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:17:37.005Z] [INFO] Garbage collection triggered
+[2025-08-18T13:17:37.169Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:17:37.169Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:18:36.905Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:18:37.032Z] [INFO] Garbage collection triggered
+[2025-08-18T13:18:37.057Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:18:37.058Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:19:36.904Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:19:37.012Z] [INFO] Garbage collection triggered
+[2025-08-18T13:19:37.048Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:19:37.049Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:20:36.903Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:20:36.993Z] [INFO] Garbage collection triggered
+[2025-08-18T13:20:37.022Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:20:37.023Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:21:36.901Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:21:37.054Z] [INFO] Garbage collection triggered
+[2025-08-18T13:21:37.088Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:21:37.089Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:22:36.904Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:22:37.142Z] [INFO] Garbage collection triggered
+[2025-08-18T13:22:37.175Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:22:37.175Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:23:36.903Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:23:36.999Z] [INFO] Garbage collection triggered
+[2025-08-18T13:23:37.024Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:23:37.025Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:24:36.903Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:24:37.025Z] [INFO] Garbage collection triggered
+[2025-08-18T13:24:37.048Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:24:37.049Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:25:36.906Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:25:36.990Z] [INFO] Garbage collection triggered
+[2025-08-18T13:25:37.009Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:25:37.010Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:26:36.903Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:26:36.961Z] [INFO] Garbage collection triggered
+[2025-08-18T13:26:36.982Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:26:36.983Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:27:36.904Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:27:37.014Z] [INFO] Garbage collection triggered
+[2025-08-18T13:27:37.043Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:27:37.043Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:28:36.917Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:28:37.011Z] [INFO] Garbage collection triggered
+[2025-08-18T13:28:37.031Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:28:37.032Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:29:36.916Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:29:36.936Z] [INFO] Garbage collection triggered
+[2025-08-18T13:29:36.955Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:29:36.956Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:29:57.276Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"14ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T13:30:02.326Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"4ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T13:30:36.919Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:30:37.018Z] [INFO] Garbage collection triggered
+[2025-08-18T13:30:37.061Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:30:37.062Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:31:36.919Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:31:37.051Z] [INFO] Garbage collection triggered
+[2025-08-18T13:31:37.072Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:31:37.073Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:32:03.183Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"12ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T13:32:36.916Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:32:36.934Z] [INFO] Garbage collection triggered
+[2025-08-18T13:32:36.966Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:32:36.967Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:33:36.929Z] [WARN] High memory usage: 96.6% (113MB / 117MB)
+[2025-08-18T13:33:37.005Z] [INFO] Garbage collection triggered
+[2025-08-18T13:33:37.025Z] [WARN] No memory freed - possible memory leak detected
+[2025-08-18T13:33:37.025Z] [DEBUG] Memory: 113MB / 117MB (96.6%)
+[2025-08-18T13:33:37.414Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T13:33:37.415Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T13:33:37.416Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T13:33:37.416Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T13:33:39.305Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"12ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T13:36:57.801Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T13:36:57.803Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T13:36:57.804Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T13:36:57.804Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T13:36:57.883Z] [INFO] Advanced memory monitoring started
+[2025-08-18T13:36:57.885Z] [INFO] 🚀 Server started on port 3000 | Data: {"environment":"development","port":3000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T13:36:57.885Z] [INFO] serving on port 3000
+[2025-08-18T13:36:57.885Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 3000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:3000/api/health
+Admin Dashboard: http://localhost:3000/admin
+      
+[2025-08-18T13:37:27.909Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:37:28.113Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:37:55.420Z] [INFO] Received SIGTERM, starting graceful shutdown...
+[2025-08-18T13:37:55.442Z] [INFO] Server closed
+[2025-08-18T13:38:08.199Z] [INFO] 🔍 Validating configuration...
+[2025-08-18T13:38:08.200Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-18T13:38:08.201Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-18T13:38:08.201Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-18T13:38:08.248Z] [INFO] Advanced memory monitoring started
+[2025-08-18T13:38:08.253Z] [INFO] 🚀 Server started on port 3000 | Data: {"environment":"development","port":3000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-18T13:38:08.253Z] [INFO] serving on port 3000
+[2025-08-18T13:38:08.254Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 3000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:3000/api/health
+Admin Dashboard: http://localhost:3000/admin
+      
+[2025-08-18T13:38:12.498Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"10ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T13:38:16.664Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"1ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T13:38:20.046Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"3ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T13:38:23.734Z] [INFO] GET /api/predefined-puzzles 200 | IP: ::1 | Data: {"method":"GET","path":"/api/predefined-puzzles","statusCode":200,"duration":"2ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-18T13:38:38.249Z] [WARN] High memory usage detected: 94.4%
+[2025-08-18T13:38:38.381Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:39:08.248Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:39:08.266Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:39:08.379Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:39:08.397Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:39:38.266Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:39:38.396Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:40:08.249Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:40:08.267Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:40:08.380Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:40:08.397Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:40:08.398Z] [INFO] Memory usage: 117MB / 123MB (95.1%)
+[2025-08-18T13:40:38.267Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:40:38.396Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:41:08.248Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:41:08.266Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:41:08.381Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:41:08.398Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:41:38.267Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:41:38.399Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:42:08.246Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:42:08.266Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:42:08.379Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:42:08.396Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:42:38.273Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:42:38.535Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:43:08.323Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:43:08.410Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:43:08.532Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:43:08.550Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:43:38.410Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:43:38.578Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:44:08.318Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:44:08.410Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:44:08.460Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:44:08.540Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:44:38.411Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:44:38.554Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:45:08.318Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:45:08.412Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:45:08.457Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:45:08.548Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:45:08.549Z] [INFO] Memory usage: 117MB / 123MB (95.1%)
+[2025-08-18T13:45:38.414Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:45:38.548Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:46:08.319Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:46:08.415Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:46:08.498Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:46:08.569Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:46:38.415Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:46:38.549Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:47:08.319Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T13:47:08.416Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:47:08.455Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:47:08.561Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T13:47:38.418Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T13:47:38.612Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:02:58.454Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T14:02:58.842Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T14:02:58.983Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:02:57.414Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:03:26.831Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T14:03:27.352Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:18:47.638Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T14:18:47.703Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T14:18:47.831Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:18:47.859Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:19:17.626Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T14:19:17.779Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:34:38.635Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T14:34:38.714Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T14:34:38.868Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:34:38.949Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:35:08.650Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T14:35:08.789Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:35:08.790Z] [INFO] Memory usage: 117MB / 123MB (95.1%)
+[2025-08-18T14:50:29.493Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T14:50:29.550Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T14:50:29.671Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:50:29.671Z] [INFO] Memory usage: 117MB / 123MB (95.1%)
+[2025-08-18T14:50:29.719Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T14:50:59.485Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T14:50:59.625Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:06:20.168Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:06:20.218Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T15:06:20.343Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:06:20.374Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:06:50.160Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:06:50.363Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:22:10.978Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:22:11.044Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T15:22:11.172Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:22:11.244Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:22:40.901Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:22:41.039Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:38:01.750Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:38:01.809Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T15:38:01.950Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:38:02.049Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:38:31.668Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:38:31.898Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:43:15.703Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:43:15.763Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T15:43:15.880Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:43:15.904Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:43:45.704Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:43:45.837Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:59:06.509Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:59:06.562Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T15:59:06.684Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:59:06.720Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T15:59:36.473Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T15:59:36.612Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:14:57.188Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T16:14:57.244Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T16:14:57.365Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:14:57.392Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:15:27.162Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T16:15:27.375Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:15:27.375Z] [INFO] Memory usage: 117MB / 123MB (95.1%)
+[2025-08-18T16:30:48.206Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T16:30:48.246Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T16:30:48.367Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:30:48.397Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:31:18.036Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T16:31:18.177Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:46:38.854Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T16:46:38.924Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T16:46:39.046Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:46:39.075Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T16:47:08.816Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T16:47:08.953Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:02:29.929Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T17:02:29.983Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T17:02:30.103Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:02:30.133Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:02:59.959Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T17:03:00.099Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:18:20.985Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T17:18:21.037Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T17:18:21.159Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:18:21.190Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:18:50.844Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T17:18:50.999Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:34:11.978Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T17:34:12.031Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T17:34:12.150Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:34:12.179Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:34:41.926Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T17:34:42.071Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:50:02.726Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T17:50:02.793Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T17:50:02.915Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:50:02.916Z] [INFO] Memory usage: 117MB / 123MB (95.1%)
+[2025-08-18T17:50:02.955Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T17:50:32.767Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T17:50:33.002Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:05:54.405Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:05:54.505Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T18:05:54.633Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:05:54.668Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:06:24.403Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:06:24.545Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:09:04.770Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:09:04.820Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T18:09:04.939Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:09:04.972Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:09:34.768Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:09:34.905Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:24:55.792Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:24:55.849Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T18:24:55.970Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:24:56.002Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:25:25.731Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:25:25.912Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:25:25.913Z] [INFO] Memory usage: 117MB / 123MB (95.1%)
+[2025-08-18T18:40:46.541Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:40:46.605Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T18:40:46.725Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:40:46.754Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:41:16.430Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:41:16.562Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:45:18.213Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:45:18.267Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T18:45:18.388Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:45:18.389Z] [INFO] Memory usage: 117MB / 123MB (95.1%)
+[2025-08-18T18:45:18.416Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T18:45:48.212Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T18:45:48.348Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:01:09.542Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T19:01:09.611Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T19:01:09.734Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:01:09.770Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:01:39.466Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T19:01:39.679Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:17:00.167Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T19:17:00.236Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T19:17:00.359Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:17:00.389Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:17:30.228Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T19:17:30.378Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:32:51.551Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T19:32:51.602Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T19:32:51.723Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:32:51.755Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:33:21.210Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T19:33:21.355Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:37:18.793Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T19:37:18.821Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-18T19:37:18.941Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:37:18.975Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:37:48.791Z] [WARN] High memory usage detected: 95.1%
+[2025-08-18T19:37:48.927Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:38:07.120Z] [INFO] Google Drive initialized successfully
+[2025-08-18T19:53:09.638Z] [WARN] High memory usage detected: 96.0%
+[2025-08-18T19:53:09.669Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T19:53:09.792Z] [INFO] Memory optimization completed: freed 1MB
+[2025-08-18T19:53:09.822Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T19:53:11.473Z] [INFO] Google Drive folder structure created
+[2025-08-18T19:53:11.989Z] [INFO] Cleaned up 0 old files
+[2025-08-18T19:53:11.995Z] [INFO] File cleanup completed: 0 files deleted, 0 errors
+[2025-08-18T19:53:11.995Z] [INFO] File cleanup completed
+[2025-08-18T19:53:39.571Z] [WARN] High memory usage detected: 96.0%
+[2025-08-18T19:53:39.703Z] [INFO] Memory optimization completed: freed 1MB
+[2025-08-18T20:09:00.361Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T20:09:00.414Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T20:09:00.541Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:09:00.583Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:09:30.677Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T20:09:30.810Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:24:51.895Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T20:24:51.954Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T20:24:52.076Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:24:52.110Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:25:21.833Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T20:25:21.964Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:25:21.965Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-18T20:40:42.858Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T20:40:42.916Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T20:40:43.037Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:40:43.067Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:41:12.693Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T20:41:12.832Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:56:34.018Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T20:56:34.097Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T20:56:34.229Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:56:34.256Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T20:57:03.948Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T20:57:04.101Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:12:25.302Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:12:25.497Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T21:12:25.673Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:12:25.707Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:12:55.432Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:12:55.664Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:19:55.832Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:19:55.901Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T21:19:56.036Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:19:56.146Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:20:25.840Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:20:26.014Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:20:26.015Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-18T21:35:46.904Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:35:46.967Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T21:35:47.091Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:35:47.119Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:36:16.895Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:36:17.030Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:38:20.829Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:38:20.900Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T21:38:21.032Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:38:21.068Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:38:50.828Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:38:50.972Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:54:11.830Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:54:11.889Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T21:54:12.027Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:54:12.056Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T21:54:41.772Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T21:54:41.912Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:10:03.204Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T22:10:03.298Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T22:10:03.426Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:10:03.427Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-18T22:10:03.488Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:10:33.198Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T22:10:33.346Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:25:53.905Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T22:25:53.957Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T22:25:54.080Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:25:54.113Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:26:23.770Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T22:26:24.001Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:41:44.792Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T22:41:44.847Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T22:41:44.968Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:41:45.000Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:42:14.761Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T22:42:14.921Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:57:36.810Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T22:57:36.916Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T22:57:37.050Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:57:37.081Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T22:58:06.756Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T22:58:06.900Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:13:27.558Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T23:13:27.623Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T23:13:27.754Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:13:27.784Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:13:57.446Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T23:13:57.612Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:29:18.265Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T23:29:18.339Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T23:29:18.463Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:29:18.501Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:29:48.198Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T23:29:48.465Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:45:09.013Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T23:45:09.079Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-18T23:45:09.204Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:45:09.204Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-18T23:45:09.238Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-18T23:45:39.116Z] [WARN] High memory usage detected: 95.2%
+[2025-08-18T23:45:39.258Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:00:59.935Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T00:00:59.995Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T00:01:00.117Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:01:00.150Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:01:29.752Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T00:01:30.008Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:16:50.565Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T00:16:50.627Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T00:16:50.756Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:16:50.796Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:17:20.579Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T00:17:20.721Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:32:41.704Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T00:32:41.800Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T00:32:41.932Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:32:41.993Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:33:11.682Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T00:33:11.831Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:48:32.802Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T00:48:32.854Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T00:48:32.979Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:48:33.008Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T00:49:02.452Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T00:49:02.591Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:04:23.261Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T01:04:23.319Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T01:04:23.441Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:04:23.467Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:04:53.255Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T01:04:53.405Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:20:14.083Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T01:20:14.138Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T01:20:14.260Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:20:14.261Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-19T01:20:14.296Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:20:44.089Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T01:20:44.244Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:34:31.881Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T01:34:31.943Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T01:34:32.069Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:34:32.105Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:35:01.871Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T01:35:02.014Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:35:02.015Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-19T01:50:22.829Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T01:50:22.874Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T01:50:22.997Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:50:22.997Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-19T01:50:23.033Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T01:50:24.255Z] [INFO] Cleaned up 0 old files
+[2025-08-19T01:50:24.263Z] [INFO] File cleanup completed: 0 files deleted, 0 errors
+[2025-08-19T01:50:24.263Z] [INFO] File cleanup completed
+[2025-08-19T01:50:52.925Z] [WARN] High memory usage detected: 96.0%
+[2025-08-19T01:50:53.065Z] [INFO] Memory optimization completed: freed 1MB
+[2025-08-19T02:06:13.642Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T02:06:13.694Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T02:06:13.816Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:06:13.851Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:06:43.455Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T02:06:43.612Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:22:04.786Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T02:22:04.844Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T02:22:04.965Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:22:04.995Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:22:34.514Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T02:22:34.663Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:37:55.529Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T02:37:55.589Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T02:37:55.713Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:37:55.750Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:38:25.819Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T02:38:25.979Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:53:46.644Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T02:53:46.690Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T02:53:46.812Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:53:46.847Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T02:54:16.658Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T02:54:16.795Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:09:37.786Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T03:09:37.836Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T03:09:37.959Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:09:37.999Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:10:07.799Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T03:10:08.201Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:10:08.201Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-19T03:25:28.813Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T03:25:28.869Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T03:25:28.994Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:25:28.994Z] [INFO] Memory usage: 118MB / 124MB (95.2%)
+[2025-08-19T03:25:29.024Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:25:58.518Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T03:25:58.666Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:35:32.523Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T03:35:32.579Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T03:35:32.701Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:35:32.732Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:36:02.495Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T03:36:02.644Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:51:23.279Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T03:51:23.343Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T03:51:23.466Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:51:23.500Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T03:51:53.468Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T03:51:53.745Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:02:29.702Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:02:29.758Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T04:02:29.884Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:02:29.920Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:02:59.721Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:02:59.854Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:18:20.776Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:18:20.815Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T04:18:20.938Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:18:20.975Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:18:50.788Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:18:51.001Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:34:11.779Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:34:11.827Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T04:34:11.948Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:34:11.996Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:34:41.579Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:34:41.720Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:36:34.499Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:36:34.556Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T04:36:34.677Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:36:34.703Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:37:04.499Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:37:04.642Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:52:25.457Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:52:25.508Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T04:52:25.631Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:52:25.678Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T04:52:55.424Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T04:52:55.578Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:08:16.223Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:08:16.282Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T05:08:16.404Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:08:16.436Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:08:46.197Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:08:46.340Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:13:34.531Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:13:34.582Z] [WARN] High memory usage: 95.2% (118MB / 124MB)
+[2025-08-19T05:13:34.714Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:13:34.904Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:14:04.549Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:14:04.977Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:14:19.407Z] [INFO] Authentication signup successful | IP: ::1 | Data: {"userId":"C35212E7D72115DC2817F9C2008F3935","action":"signup","success":true}
+[2025-08-19T05:14:19.414Z] [INFO] POST /api/auth/signup 201 | IP: ::1 | Data: {"method":"POST","path":"/api/auth/signup","statusCode":201,"duration":"124ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-19T05:14:34.658Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:14:34.928Z] [WARN] High memory usage: 95.2% (119MB / 125MB)
+[2025-08-19T05:14:35.056Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:14:35.115Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:15:04.590Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:15:04.810Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:15:04.811Z] [INFO] Memory usage: 119MB / 125MB (95.2%)
+[2025-08-19T05:15:34.589Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:15:34.887Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:15:34.926Z] [WARN] High memory usage: 95.2% (119MB / 125MB)
+[2025-08-19T05:15:35.071Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:16:04.588Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:16:04.773Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:16:34.586Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:16:34.787Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:16:34.925Z] [WARN] High memory usage: 95.2% (119MB / 125MB)
+[2025-08-19T05:16:35.086Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:17:04.590Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:17:04.921Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:17:34.585Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:17:34.804Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:17:34.928Z] [WARN] High memory usage: 95.2% (119MB / 125MB)
+[2025-08-19T05:17:35.072Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:18:04.589Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:18:04.939Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:18:34.595Z] [WARN] High memory usage detected: 95.2%
+[2025-08-19T05:18:36.223Z] [WARN] High memory usage: 95.2% (119MB / 125MB)
+[2025-08-19T05:18:36.486Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T05:18:36.551Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T07:39:43.570Z] [INFO] 🔍 Validating configuration...
+[2025-08-19T07:39:43.572Z] [INFO] 🔍 Validating Google Drive configuration...
+[2025-08-19T07:39:43.573Z] [INFO] 🔍 Setting up upload directory...
+[2025-08-19T07:39:43.573Z] [INFO] ✅ Configuration validation completed successfully
+[2025-08-19T07:39:43.625Z] [INFO] Advanced memory monitoring started
+[2025-08-19T07:39:43.628Z] [INFO] 🚀 Server started on port 5000 | Data: {"environment":"development","port":5000,"uploadDir":"uploads","storageType":"google-drive","databaseType":"sqlite"}
+[2025-08-19T07:39:43.628Z] [INFO] serving on port 5000
+[2025-08-19T07:39:43.628Z] [INFO] 
+🎉 JIGSAWJUNCTION SERVER STARTED SUCCESSFULLY! 🎉
+
+Server Information:
+- Port: 5000
+- Environment: development
+- Database: sqlite
+- Storage: google-drive
+- Upload Directory: uploads
+
+Health Check: http://localhost:5000/api/health
+Admin Dashboard: http://localhost:5000/admin
+      
+[2025-08-19T07:39:52.593Z] [INFO] GET /api/health 200 | IP: ::1 | Data: {"method":"GET","path":"/api/health","statusCode":200,"duration":"8ms","ip":"::1","userAgent":"curl/8.7.1"}
+[2025-08-19T07:40:13.649Z] [WARN] High memory usage detected: 94.4%
+[2025-08-19T07:40:13.889Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T07:40:13.890Z] [INFO] Memory usage: 117MB / 124MB (94.4%)
+[2025-08-19T07:40:43.650Z] [WARN] High memory usage: 95.1% (117MB / 123MB)
+[2025-08-19T07:40:43.733Z] [WARN] High memory usage detected: 95.1%
+[2025-08-19T07:40:43.861Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T07:40:43.902Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T07:41:13.748Z] [WARN] High memory usage detected: 95.9%
+[2025-08-19T07:41:13.996Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T07:41:43.651Z] [WARN] High memory usage: 95.9% (117MB / 122MB)
+[2025-08-19T07:41:43.855Z] [WARN] High memory usage detected: 95.9%
+[2025-08-19T07:41:43.951Z] [INFO] Memory optimization completed: freed 0MB
+[2025-08-19T07:41:44.002Z] [INFO] Memory optimization completed: freed 0MB

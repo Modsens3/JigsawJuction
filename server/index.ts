@@ -10,7 +10,7 @@ import { errorHandler } from './middleware';
 import { validateGoogleDriveConfig, ensureUploadDir } from './config';
 import { cleanupOldFiles } from './google-drive';
 import { cleanupLocalFiles } from './upload';
-import { performanceMonitor } from './health';
+import { performanceMonitor } from './performance-monitor';
 import { 
   httpsRedirect, 
   securityHeaders, 
@@ -18,13 +18,57 @@ import {
   bodySizeLimit,
   apiLimiter,
   authLimiter,
-  uploadLimiter
+  uploadLimiter,
+  memoryOptimization,
+  requestValidation
 } from './middleware';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
+import { memoryOptimizer } from './memory-optimizer';
 
 // Store interval references for cleanup
 const intervals: NodeJS.Timeout[] = [];
+
+// Memory optimization: Clear unused references
+const clearUnusedReferences = () => {
+  // Clear any cached data
+  if (global.cache) {
+    global.cache = {};
+  }
+  
+  // Clear any temporary data
+  if (global.tempData) {
+    global.tempData = {};
+  }
+  
+  // Clear any global variables that might be holding references
+  if (global.__v8_promise_rejections) {
+    global.__v8_promise_rejections = [];
+  }
+  
+  // Clear event listeners that might be holding references
+  if (process.listenerCount) {
+    const events = ['uncaughtException', 'unhandledRejection', 'warning'];
+    events.forEach(event => {
+      const count = process.listenerCount(event);
+      if (count > 1) {
+        logger.warn(`Multiple listeners for ${event}: ${count}`);
+      }
+    });
+  }
+  
+  // Force garbage collection if available
+  if (global.gc) {
+    global.gc();
+    // Call GC multiple times for better cleanup
+    setTimeout(() => {
+      if (global.gc) global.gc();
+    }, 100);
+    setTimeout(() => {
+      if (global.gc) global.gc();
+    }, 500);
+  }
+};
 
 const app = express();
 
@@ -33,8 +77,14 @@ if (config.server.nodeEnv === 'production') {
   app.use(httpsRedirect);
 }
 
-// Security headers
+// Memory optimization middleware
+app.use(memoryOptimization);
+
+// Enhanced security headers
 app.use(securityHeaders);
+
+// Request validation
+app.use(requestValidation);
 
 // FIXED: Optimized CORS configuration
 app.use(cors({
@@ -103,21 +153,21 @@ app.use((req, res, next) => {
 });
 
 // FIXED: Session configuration with better memory management
-const sessionConfig: session.SessionOptions = {
-  secret: process.env.SESSION_SECRET || 'fallback-secret-for-dev',
+app.use(session({
+  secret: config.security.sessionSecret,
   resave: false,
   saveUninitialized: false,
-  rolling: true, // Reset expiry on activity
   cookie: {
     secure: config.server.nodeEnv === 'production',
     httpOnly: true,
-    maxAge: 2 * 60 * 60 * 1000, // Reduced to 2 hours from 24
-    sameSite: config.server.nodeEnv === 'production' ? 'strict' : 'lax'
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    sameSite: 'strict'
   },
-  name: 'jigsawjunction.sid'
-};
-
-app.use(session(sessionConfig));
+  // Memory optimization for sessions
+  name: 'sid', // Shorter name
+  rolling: true, // Extend session on activity
+  unset: 'destroy' // Remove session when unset
+}));
 
 // FIXED: Optimized request logging (reduced overhead)
 app.use((req, res, next) => {
@@ -231,6 +281,28 @@ Admin Dashboard: http://localhost:${port}/admin
       `);
     });
 
+    // Start advanced memory monitoring
+    memoryOptimizer.startMonitoring();
+    logger.info('Advanced memory monitoring started');
+
+    // FIXED: Much more conservative memory monitoring with better cleanup
+    const memoryMonitor = setInterval(() => {
+      const stats = memoryOptimizer.getMemoryStats();
+      const trend = memoryOptimizer.getMemoryTrend();
+      
+      // Log memory trend
+      if (trend.trend === 'increasing' && trend.rate > 5) {
+        logger.warn(`Memory usage increasing rapidly: ${trend.rate.toFixed(2)}MB/s`);
+      }
+      
+      // Trigger optimization if needed
+      if (stats.percentage > 85) {
+        logger.warn(`High memory usage: ${stats.percentage.toFixed(1)}% (${stats.heapUsed}MB / ${stats.heapTotal}MB)`);
+        memoryOptimizer.optimizeMemory();
+      }
+    }, 60000); // Every minute
+    intervals.push(memoryMonitor);
+
     // FIXED: Optimized file cleanup (less frequent, less memory intensive)
     const fileCleanup = setInterval(async () => {
       try {
@@ -249,31 +321,6 @@ Admin Dashboard: http://localhost:${port}/admin
     }, 6 * 60 * 60 * 1000); // Every 6 hours instead of daily
     intervals.push(fileCleanup);
 
-    // FIXED: Much more conservative memory monitoring
-    const memoryMonitor = setInterval(() => {
-      const memUsage = process.memoryUsage();
-      const heapUsedMB = Math.round(memUsage.heapUsed / 1024 / 1024);
-      const heapTotalMB = Math.round(memUsage.heapTotal / 1024 / 1024);
-      const memoryUsagePercent = (heapUsedMB / heapTotalMB) * 100;
-      
-      // Only warn at very high usage to reduce log spam
-      if (memoryUsagePercent > 85) {
-        logger.warn(`High memory usage: ${memoryUsagePercent.toFixed(1)}% (${heapUsedMB}MB / ${heapTotalMB}MB)`);
-        
-        // Only trigger GC at very high usage
-        if (memoryUsagePercent > 90 && global.gc) {
-          global.gc();
-          logger.info('Garbage collection triggered');
-        }
-      }
-      
-      // Only log memory usage every 10 minutes in debug mode
-      if (process.env.NODE_ENV === 'development') {
-        logger.debug(`Memory: ${heapUsedMB}MB / ${heapTotalMB}MB (${memoryUsagePercent.toFixed(1)}%)`);
-      }
-    }, 10 * 60 * 1000); // Every 10 minutes instead of every 2 minutes
-    intervals.push(memoryMonitor);
-
     // Graceful shutdown handlers
     const gracefulShutdown = (signal: string) => {
       logger.info(`Received ${signal}, starting graceful shutdown...`);
@@ -282,6 +329,9 @@ Admin Dashboard: http://localhost:${port}/admin
       intervals.forEach(interval => {
         clearInterval(interval);
       });
+      
+      // Memory cleanup before shutdown
+      clearUnusedReferences();
       
       // Close server
       if (server) {

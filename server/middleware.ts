@@ -5,6 +5,7 @@ import cors from 'cors';
 import { config } from './config';
 import { logger } from './logger';
 import crypto from 'crypto';
+import express from 'express';
 
 // HTTPS redirect middleware for production
 export const httpsRedirect = (req: any, res: any, next: any) => {
@@ -58,32 +59,47 @@ export const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 };
 
-// Security headers middleware
-export const securityHeaders = helmet({
-  contentSecurityPolicy: config.server.nodeEnv === 'production' ? {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "https://fonts.googleapis.com"],
-      fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https:"],
-      scriptSrc: ["'self'"],
-      connectSrc: ["'self'"],
-      frameSrc: ["'none'"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  } : false, // Disable CSP in development for Vite HMR
-  crossOriginEmbedderPolicy: false,
-  crossOriginResourcePolicy: { policy: "cross-origin" },
-  strictTransportSecurity: config.server.nodeEnv === 'production' ? {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true
-  } : false,
-  noSniff: true,
-  xssFilter: true,
-  frameguard: { action: 'deny' }
-});
+// Enhanced security middleware
+export const securityHeaders = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  // Security headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
+  
+  // Content Security Policy
+  res.setHeader('Content-Security-Policy', 
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+    "style-src 'self' 'unsafe-inline'; " +
+    "img-src 'self' data: https:; " +
+    "font-src 'self'; " +
+    "connect-src 'self' https:; " +
+    "frame-ancestors 'none';"
+  );
+  
+  next();
+};
+
+// Request validation middleware
+export const requestValidation = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  // Validate request size
+  const contentLength = parseInt(req.headers['content-length'] || '0');
+  if (contentLength > 50 * 1024 * 1024) { // 50MB limit
+    return res.status(413).json({ error: 'Request too large' });
+  }
+  
+  // Validate content type for POST/PUT requests
+  if (['POST', 'PUT', 'PATCH'].includes(req.method)) {
+    const contentType = req.headers['content-type'];
+    if (!contentType || !contentType.includes('application/json')) {
+      return res.status(400).json({ error: 'Invalid content type' });
+    }
+  }
+  
+  next();
+};
 
 // Body size limit middleware
 export const bodySizeLimit = (req: any, res: any, next: any) => {
@@ -190,5 +206,27 @@ export const etagMiddleware = (req: Request, res: Response, next: NextFunction) 
     }
     return originalSend.call(this, data);
   };
+  next();
+};
+
+// Memory optimization middleware
+export const memoryOptimization = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  // Check memory usage on each request
+  const memUsage = process.memoryUsage();
+  const heapUsedMB = Math.round(memUsage.heapUsed / 1024 / 1024);
+  const heapTotalMB = Math.round(memUsage.heapTotal / 1024 / 1024);
+  const memoryUsagePercent = (heapUsedMB / heapTotalMB) * 100;
+  
+  // If memory usage is very high, trigger cleanup
+  if (memoryUsagePercent > 90 && global.gc) {
+    global.gc();
+  }
+  
+  // Add memory info to response headers in development
+  if (process.env.NODE_ENV === 'development') {
+    res.setHeader('X-Memory-Usage', `${memoryUsagePercent.toFixed(1)}%`);
+    res.setHeader('X-Heap-Used', `${heapUsedMB}MB`);
+  }
+  
   next();
 };
